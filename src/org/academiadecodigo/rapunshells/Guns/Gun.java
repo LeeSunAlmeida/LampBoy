@@ -13,9 +13,6 @@ public class Gun {
     private int shootSpeed;
     private Player player;
     private Enemy enemy;
-    private ArmoredSoldier armoredSoldier;
-    private Milicia milicia;
-    private Soldier soldier;
     public Rectangle gunVisual;
 
     public Gun(int bulletDmg, int shootSpeed, Player player) {

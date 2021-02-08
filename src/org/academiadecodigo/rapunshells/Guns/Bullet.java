@@ -16,6 +16,7 @@ public class Bullet implements Movable {
         this.gun = gun;
         this.damage = damage;
         bulletVisual = new Rectangle(gun.gunVisual.getX(), gun.gunVisual.getY(), 5, 5);//bala tem de sair da posição da gun
+        bulletVisual.draw();
         bulletMove();
     }
 
@@ -23,7 +24,7 @@ public class Bullet implements Movable {
 
     // todo bullet will move() in straight line
     public void bulletMove() {
-        for (int i=0; i< Window.getCols()*Window.getCelSizeX() - gun.gunVisual.getX(); i++) {
+        for (int i=0; i< 10000; i++) {
             bulletVisual.translate(1, 0);
             for (int j=0; i<1000; i++){
 

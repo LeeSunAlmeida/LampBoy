@@ -14,9 +14,6 @@ public class Gun {
     private int shootSpeed;
     private Player player;
     private Enemy enemy;
-    private ArmoredSoldier armoredSoldier;
-    private Milicia milicia;
-    private Soldier soldier;
     public Rectangle gunVisual;
     public int gunSize = 10;
     public int gunHeightStand = 3 * Window.getCelSizeY();

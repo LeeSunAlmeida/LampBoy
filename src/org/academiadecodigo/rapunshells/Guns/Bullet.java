@@ -1,6 +1,7 @@
 package org.academiadecodigo.rapunshells.Guns;
 
 import org.academiadecodigo.rapunshells.Grid.Position;
+import org.academiadecodigo.rapunshells.Window;
 import org.academiadecodigo.simplegraphics.graphics.Movable;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
@@ -15,14 +16,19 @@ public class Bullet implements Movable {
         this.gun = gun;
         this.damage = damage;
         bulletVisual = new Rectangle(gun.gunVisual.getX(), gun.gunVisual.getY(), 5, 5);//bala tem de sair da posição da gun
-
+        bulletMove();
     }
 
 
 
     // todo bullet will move() in straight line
     public void bulletMove() {
-        for (int i=0; i<)
+        for (int i=0; i< Window.getCols()*Window.getCelSizeX() - gun.gunVisual.getX(); i++) {
+            bulletVisual.translate(1, 0);
+            for (int j=0; i<1000; i++){
+
+            }
+        }
     }
 
     // todo bullet will have collision detection, calls Hittable.hit()

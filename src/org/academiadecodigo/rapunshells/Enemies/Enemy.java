@@ -12,9 +12,7 @@ public abstract class Enemy implements CanShoot, Hittable, Movable {
     protected int health;
     protected Gun gun;
 
-    public Enemy(int health) {
-        this.health = health;
-
+    public Enemy() {
     }
 
 

@@ -1,5 +1,8 @@
 package org.academiadecodigo.rapunshells.Guns;
 
+import org.academiadecodigo.rapunshells.Enemies.ArmoredSoldier;
+import org.academiadecodigo.rapunshells.Enemies.Milicia;
+import org.academiadecodigo.rapunshells.Enemies.Soldier;
 import org.academiadecodigo.rapunshells.Player.Player;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
@@ -10,6 +13,9 @@ public class Gun {
     private int shootSpeed;
     private Player player;
     private Enemy enemy;
+    private ArmoredSoldier armoredSoldier;
+    private Milicia milicia;
+    private Soldier soldier;
     public Rectangle gunVisual;
 
     public Gun(int bulletDmg, int shootSpeed, Player player) {

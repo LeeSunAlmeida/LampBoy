@@ -9,9 +9,9 @@ public class ArmoredSoldier extends Enemy{
 
 
     public ArmoredSoldier() {
-
         health = 150;
         gun = new Gun(15, 900, this);
+
     }
 
     @Override

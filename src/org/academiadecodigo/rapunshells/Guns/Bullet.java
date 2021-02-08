@@ -14,7 +14,7 @@ public class Bullet implements Movable {
     public Bullet(int damage,Gun gun) {
         this.gun = gun;
         this.damage = damage;
-        bulletVisual = new Rectangle();//bala tem de sair da posição da gun
+        bulletVisual = new Rectangle(gun.gunVisual.getX(), gun.gunVisual.getY(), 5, 5);//bala tem de sair da posição da gun
 
     }
 
@@ -22,7 +22,7 @@ public class Bullet implements Movable {
 
     // todo bullet will move() in straight line
     public void bulletMove() {
-        
+        for (int i=0; i<)
     }
 
     // todo bullet will have collision detection, calls Hittable.hit()

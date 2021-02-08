@@ -37,6 +37,7 @@ public class Gun {
         return bulletDamage;
     }
 
+
 }
 
 // todo on space, call shootBullets() once every shootspeed seconds

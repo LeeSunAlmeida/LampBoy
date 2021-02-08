@@ -22,6 +22,8 @@ public class Player implements CanShoot, Hittable, Movable, KeyboardHandler {
     private int charWidth = Window.getCelSizeX() * 8;
     private int charStartPointX = Window.getPADDING() + 10;
     private int charStartPointY = Window.getFLOORCOORD() - charHeight;
+    private boolean stand = false;
+    private boolean facedRight = true;
 
     private Position position;
     private Rectangle playerVisual;
@@ -62,9 +64,14 @@ public class Player implements CanShoot, Hittable, Movable, KeyboardHandler {
         keyboard.addEventListener(jump);
 
         KeyboardEvent duck = new KeyboardEvent();
-        jump.setKey(KeyboardEvent.KEY_DOWN);
-        jump.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        duck.setKey(KeyboardEvent.KEY_DOWN);
+        duck.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
         keyboard.addEventListener(duck);
+
+        KeyboardEvent unDuck = new KeyboardEvent();
+        unDuck.setKey(KeyboardEvent.KEY_DOWN);
+        unDuck.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+        keyboard.addEventListener(unDuck);
 
     }
 
@@ -92,7 +99,9 @@ public class Player implements CanShoot, Hittable, Movable, KeyboardHandler {
                 }
                 break;
             case KeyboardEvent.KEY_DOWN:
+
                 double duckHeight = (Window.getCelSizeY() * 1.5);
+                stand = false;
                 playerVisual.grow(0, - duckHeight);
                 playerVisual.translate(0, duckHeight);
                 break;
@@ -105,6 +114,7 @@ public class Player implements CanShoot, Hittable, Movable, KeyboardHandler {
     public void keyReleased(KeyboardEvent keyboardEvent) {
         switch (keyboardEvent.getKey()) {
             case KeyboardEvent.KEY_DOWN:
+                stand = true;
                 double duckHeight = (Window.getCelSizeY() * 1.5);
                 playerVisual.grow(0, duckHeight);
                 playerVisual.translate(0, - duckHeight);
@@ -182,5 +192,13 @@ public class Player implements CanShoot, Hittable, Movable, KeyboardHandler {
 
     public int getCharWidth() {
         return charWidth;
+    }
+
+    public boolean isFacedRight() {
+        return facedRight;
+    }
+
+    public boolean isStand() {
+        return stand;
     }
 }

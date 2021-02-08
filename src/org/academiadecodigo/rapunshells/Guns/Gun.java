@@ -4,6 +4,7 @@ import org.academiadecodigo.rapunshells.Enemies.ArmoredSoldier;
 import org.academiadecodigo.rapunshells.Enemies.Milicia;
 import org.academiadecodigo.rapunshells.Enemies.Soldier;
 import org.academiadecodigo.rapunshells.Player.Player;
+import org.academiadecodigo.rapunshells.Window;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.rapunshells.Enemies.Enemy;
@@ -17,12 +18,23 @@ public class Gun {
     private Milicia milicia;
     private Soldier soldier;
     public Rectangle gunVisual;
+    public int gunSize = 10;
+    public int gunHeightStand = 3 * Window.getCelSizeY();
+    public int gunHeightDuck = Window.getCelSizeY();
 
     public Gun(int bulletDmg, int shootSpeed, Player player) {
         this.bulletDamage = bulletDmg;
         this.shootSpeed = shootSpeed;
         this.player = player;
-        gunVisual = new Rectangle(player.getCharStartPointX() + player.getCharWidth(), player.getCharStartPointY() + 15, 10, 10);
+        if(player.isFacedRight() && player.isStand()) {
+            gunVisual = new Rectangle(player.getCharStartPointX() + player.getCharWidth(), player.getCharStartPointY() + gunHeightStand, gunSize, gunSize);
+        } else if (player.isFacedRight() && !player.isStand()) {
+            gunVisual = new Rectangle(player.getCharStartPointX() + player.getCharWidth(), player.getCharStartPointY() + gunHeightDuck, gunSize, gunSize);
+        } else if (!player.isFacedRight() && player.isStand()) {
+            gunVisual = new Rectangle(player.getCharStartPointX() + player.getCharWidth(), player.getCharStartPointY() + gunHeightStand, gunSize, gunSize);
+        } else if (!player.isFacedRight() && !player.isStand()) {
+            gunVisual = new Rectangle(player.getCharStartPointX() + player.getCharWidth(), player.getCharStartPointY() + gunHeightDuck, gunSize, gunSize);
+        }
         gunVisual.draw();
         gunVisual.fill();
         gunVisual.setColor(Color.BLUE);

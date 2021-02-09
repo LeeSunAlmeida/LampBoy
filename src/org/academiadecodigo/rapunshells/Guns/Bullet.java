@@ -1,6 +1,5 @@
 package org.academiadecodigo.rapunshells.Guns;
 
-import org.academiadecodigo.rapunshells.Grid.Position;
 import org.academiadecodigo.rapunshells.Window;
 import org.academiadecodigo.simplegraphics.graphics.Movable;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;

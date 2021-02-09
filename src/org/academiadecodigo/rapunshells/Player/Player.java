@@ -22,10 +22,9 @@ public class Player implements CanShoot, Hittable, Movable, KeyboardHandler {
     private int charWidth = Window.getCelSizeX() * 8;
     private int charStartPointX = Window.getPADDING() + 10;
     private int charStartPointY = Window.getFLOORCOORD() - charHeight;
-    private boolean stand = false;
+    private boolean stand = true;
     private boolean facedRight = true;
 
-    private Position position;
     private Rectangle playerVisual;
 
     public Player(){
@@ -83,10 +82,18 @@ public class Player implements CanShoot, Hittable, Movable, KeyboardHandler {
             case KeyboardEvent.KEY_LEFT:
                 playerVisual.translate(-Window.getCelSizeX(), 0);
                 gun.gunVisual.translate(-Window.getCelSizeX(), 0);
+                if(facedRight) {
+                    gun.gunVisualUpdate(stand, true);
+                }
+                facedRight = false;
                 break;
             case KeyboardEvent.KEY_RIGHT:
                 playerVisual.translate(Window.getCelSizeX(), 0);
                 gun.gunVisual.translate(Window.getCelSizeX(), 0);
+                if(!facedRight) {
+                    gun.gunVisualUpdate(stand, false);
+                }
+                facedRight = true;
                 break;
             case KeyboardEvent.KEY_SPACE:
                 this.shoot();
@@ -99,12 +106,15 @@ public class Player implements CanShoot, Hittable, Movable, KeyboardHandler {
                 }
                 break;
             case KeyboardEvent.KEY_DOWN:
-
-                double duckHeight = (Window.getCelSizeY() * 1.5);
-                stand = false;
-                playerVisual.grow(0, - duckHeight);
-                playerVisual.translate(0, duckHeight);
-                break;
+                if(stand) {
+                    stand = false;
+                    System.out.println("I'm ducked");
+                    double duckHeight = (Window.getCelSizeY() * 1.5);
+                    playerVisual.grow(0, -duckHeight);
+                    playerVisual.translate(0, duckHeight);
+                    gun.gunVisualUpdate(true, facedRight);
+                    break;
+                }
         }
 
 
@@ -114,11 +124,15 @@ public class Player implements CanShoot, Hittable, Movable, KeyboardHandler {
     public void keyReleased(KeyboardEvent keyboardEvent) {
         switch (keyboardEvent.getKey()) {
             case KeyboardEvent.KEY_DOWN:
-                stand = true;
-                double duckHeight = (Window.getCelSizeY() * 1.5);
-                playerVisual.grow(0, duckHeight);
-                playerVisual.translate(0, - duckHeight);
-                break;
+                if(!stand) {
+                    stand = true;
+                    System.out.println("I'm standing");
+                    double duckHeight = (Window.getCelSizeY() * 1.5);
+                    playerVisual.grow(0, duckHeight);
+                    playerVisual.translate(0, -duckHeight);
+                    gun.gunVisualUpdate(false, facedRight);
+                    break;
+                }
         }
 
     }

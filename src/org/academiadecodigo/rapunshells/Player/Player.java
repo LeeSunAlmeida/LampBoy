@@ -30,7 +30,7 @@ public class Player implements CanShoot, Hittable, Movable, KeyboardHandler {
     public Player(){
         health = 100;
         gun = new Gun(10, 500,this);
-        playerVisual = new Rectangle( charStartPointX, charStartPointY, charWidth, charHeight);
+        playerVisual = new Rectangle(charStartPointX, charStartPointY, charWidth, charHeight);
         playerVisual.draw();
         playerVisual.fill();
         playerVisual.setColor(Color.MAGENTA);
@@ -206,6 +206,10 @@ public class Player implements CanShoot, Hittable, Movable, KeyboardHandler {
 
     public int getCharWidth() {
         return charWidth;
+    }
+
+    public int getCharHeight() {
+        return charHeight;
     }
 
     public boolean isFacedRight() {

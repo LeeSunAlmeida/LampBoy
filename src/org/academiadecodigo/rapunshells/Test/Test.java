@@ -1,5 +1,6 @@
 package org.academiadecodigo.rapunshells.Test;
 
+import org.academiadecodigo.rapunshells.Enemies.Soldier;
 import org.academiadecodigo.rapunshells.Environment.Foreground;
 import org.academiadecodigo.rapunshells.Grid.Grid;
 import org.academiadecodigo.rapunshells.Player.Player;
@@ -10,6 +11,7 @@ public class Test {
 
         new Grid();
         Player player = new Player();
+        Soldier soldier = new Soldier();
 
         Foreground.drawFloor();
     }

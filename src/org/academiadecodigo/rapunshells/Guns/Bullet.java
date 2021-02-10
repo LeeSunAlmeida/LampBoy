@@ -1,5 +1,7 @@
 package org.academiadecodigo.rapunshells.Guns;
 
+import org.academiadecodigo.rapunshells.Enemies.Enemy;
+import org.academiadecodigo.rapunshells.Enemies.Soldier;
 import org.academiadecodigo.rapunshells.Grid.Position;
 import org.academiadecodigo.rapunshells.Window;
 import org.academiadecodigo.simplegraphics.graphics.Movable;
@@ -26,12 +28,17 @@ public class Bullet implements Movable {
     public void bulletMove() {
         for (int i=0; i < Window.getWidth() - gun.gunVisual.getX(); i++) {
             bulletVisual.translate(1, 0);
+            //bulletCollisionDetector();
             //todo time
         }
     }
 
     // todo bullet will have collision detection, calls Hittable.hit()
-
+    public void bulletCollisionDetector(Soldier soldier) {
+        if (bulletVisual.getX() >= soldier.getSoldierVisual().getX()) {
+            soldier.hit(this);
+        }
+    }
 
     public int getDamage() {
         return damage;

@@ -1,43 +1,61 @@
 package org.academiadecodigo.rapunshells.Game;
 
+import org.academiadecodigo.rapunshells.Guns.Bullet;
 import org.academiadecodigo.rapunshells.Player.Player;
 
+import java.util.List;
+
 public class Game {
-    public static Order.Container ordersList;
+    public static Order.OrderList ordersList = new Order.OrderList();
+    public static List orderList = ordersList.getList();
+    public static List bulletList = Bullet.BulletList.getList();
+    public static final String[] playerOrders = Player.getPlayerOrders();
 
     public static void gameOver() {
 
     }
 
-    public static void executeOrders() throws InterruptedException {
-        while (!ordersList.isEmpty()) {
-            Order order = ordersList.remove();
+    public static void executeOrders(Player player) throws InterruptedException {
+        System.out.println("executeOrders");
+        while (!orderList.isEmpty()) {
+            System.out.println("order picked");
+            Order order = (Order) orderList.get(0);
+            orderList.remove(0);
             String orderStr = order.getOrderGiven();
             Object creator = order.getCreator();
-            String[] playerOrders = Player.getPlayerOrders();
             if (orderStr.equals(playerOrders[0])) {
-                Player player = (Player) creator;
-                if (!player.isJumping()) {
-                    player.jumpEvent();
-                    //TODO continue with jumpsequence
-                }
+                Player playerCreator = (Player) creator;
+                playerCreator.jumpStart();
             } else if (orderStr.equals(playerOrders[1])) {
-                Player player = (Player) creator;
-                player.duck();
+                Player playerCreator = (Player) creator;
+                playerCreator.duck();
             } else if (orderStr.equals(playerOrders[2])) {
-                Player player = (Player) creator;
-                player.unDuck();
+                Player playerCreator = (Player) creator;
+                playerCreator.unDuck();
             } else if (orderStr.equals(playerOrders[3])) {
-                Player player = (Player) creator;
-                player.moveLeft();
+                Player playerCreator = (Player) creator;
+                playerCreator.moveLeft();
             } else if (orderStr.equals(playerOrders[4])) {
-                Player player = (Player) creator;
-                player.moveRight();
+                Player playerCreator = (Player) creator;
+                playerCreator.moveRight();
             } else if (orderStr.equals(playerOrders[5])) {
-                Player player = (Player) creator;
-                player.shoot();
+                Player playerCreator = (Player) creator;
+                playerCreator.shoot();
             }
+
         }
-        Thread.sleep(100);
+
+        if(player.isJumping()) {
+            player.jumpEvent();
+        }
+
+        for(int i = 0; i < bulletList.size(); i++) {
+            Bullet bullet = (Bullet) bulletList.get(i);
+            bullet.bulletMove();
+        }
+
+
+        Thread.sleep(300);
+        executeOrders(player);
     }
 }

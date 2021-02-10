@@ -14,9 +14,9 @@ public class Test {
 
         Foreground.drawFloor();
         try{
-            Game.executeOrders();
+            Game.executeOrders(player);
         } catch (Exception e) {
-            System.out.println("dun goofed");
+            System.out.println("Thread sleep busted");
         }
     }
 }

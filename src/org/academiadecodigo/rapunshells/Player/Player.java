@@ -3,7 +3,6 @@ package org.academiadecodigo.rapunshells.Player;
 import org.academiadecodigo.rapunshells.Game.Game;
 import org.academiadecodigo.rapunshells.Game.Order;
 import org.academiadecodigo.rapunshells.Guns.Bullet;
-import org.academiadecodigo.rapunshells.Guns.CanShoot;
 import org.academiadecodigo.rapunshells.Guns.Gun;
 import org.academiadecodigo.rapunshells.Guns.Hittable;
 import org.academiadecodigo.rapunshells.Window;
@@ -27,7 +26,6 @@ public class Player implements Hittable, Movable, KeyboardHandler {
     private boolean jumping = false;
     private int currentIteration = 0;
     private static final String[] playerOrders = {"playerJump", "playerDuck", "playerUnduck", "playerLeft", "playerRight", "playerShoot"};
-    private Order orderToSend;
     private Rectangle playerVisual;
 
 
@@ -88,23 +86,21 @@ public class Player implements Hittable, Movable, KeyboardHandler {
 
         switch (keyboardEvent.getKey()) {
             case KeyboardEvent.KEY_LEFT:
-                System.out.println("left1");
-                new Order(playerOrders[3], this);
-                System.out.println("left1");
+                Game.orderList.add(new Order(playerOrders[3], this));
+                System.out.println("left 1");
                 break;
             case KeyboardEvent.KEY_RIGHT:
-                System.out.println("right1");
-                new Order(playerOrders[4], this);
-                System.out.println("right1");
+                Game.orderList.add(new Order(playerOrders[4], this));
+                System.out.println("right 1");
                 break;
             case KeyboardEvent.KEY_SPACE:
-                new Order(playerOrders[5], this);
+                Game.orderList.add(new Order(playerOrders[5], this));
                 break;
             case KeyboardEvent.KEY_UP:
-                new Order(playerOrders[0], this);
+                Game.orderList.add(new Order(playerOrders[0], this));
                 break;
             case KeyboardEvent.KEY_DOWN:
-                new Order(playerOrders[1], this);
+                Game.orderList.add(new Order(playerOrders[1], this));
                 break;
         }
     }
@@ -113,7 +109,7 @@ public class Player implements Hittable, Movable, KeyboardHandler {
     public void keyReleased(KeyboardEvent keyboardEvent) {
         switch (keyboardEvent.getKey()) {
             case KeyboardEvent.KEY_DOWN:
-                new Order(playerOrders[2], this);
+                Game.orderList.add(new Order(playerOrders[2], this));
                 break;
         }
     }
@@ -176,66 +172,71 @@ public class Player implements Hittable, Movable, KeyboardHandler {
 
     //Orders Zone
 
-        public void moveLeft() {
-            playerVisual.translate(-Window.getCelSizeX(), 0);
-            gun.gunVisual.translate(-Window.getCelSizeX(), 0);
-            if (facedRight) {
-                gun.gunVisualUpdate(stand, true);
-            }
-            facedRight = false;
+    public void moveLeft() {
+        playerVisual.translate(-Window.getCelSizeX(), 0);
+        gun.gunVisual.translate(-Window.getCelSizeX(), 0);
+        if (facedRight) {
+            gun.gunVisualUpdate(stand, true);
         }
-
-        public void moveRight() {
-            playerVisual.translate(Window.getCelSizeX(), 0);
-            gun.gunVisual.translate(Window.getCelSizeX(), 0);
-            if (!facedRight) {
-                gun.gunVisualUpdate(stand, false);
-            }
-            facedRight = true;
-        }
-
-        public void shoot() {
-            gun.shootBullet(gun.getBulletDamage());
-        }
-
-        public void duck() {
-            if (stand) {
-                stand = false;
-                System.out.println("I'm ducked");
-                double duckHeight = (Window.getCelSizeY() * 1.5);
-                playerVisual.grow(0, -duckHeight);
-                playerVisual.translate(0, duckHeight);
-                gun.gunVisualUpdate(true, facedRight);
-            }
-        }
-
-        public void unDuck() {
-            if (!stand) {
-                stand = true;
-                System.out.println("I'm standing");
-                double duckHeight = (Window.getCelSizeY() * 1.5);
-                playerVisual.grow(0, duckHeight);
-                playerVisual.translate(0, -duckHeight);
-                gun.gunVisualUpdate(false, facedRight);
-            }
-        }
-
-        public void jumpEvent() {
-            int jumpHeight = 6;
-            if(jumping) {
-                if(currentIteration == jumpHeight * 2) {
-                    currentIteration = -1;
-                    jumping = false;
-                } else if(currentIteration < jumpHeight ) {
-                    playerVisual.translate(0, -Window.getCelSizeY());
-                } else if (currentIteration < jumpHeight * 2) {
-                    playerVisual.translate(0, Window.getCelSizeY());
-                }
-            } else {
-                jumping = true;
-                playerVisual.translate(0, -Window.getCelSizeY());
-            }
-            currentIteration++;
-
+        facedRight = false;
     }
+
+    public void moveRight() {
+        playerVisual.translate(Window.getCelSizeX(), 0);
+        gun.gunVisual.translate(Window.getCelSizeX(), 0);
+        if (!facedRight) {
+            gun.gunVisualUpdate(stand, false);
+        }
+        facedRight = true;
+    }
+
+    public void shoot() {
+        gun.shootBullet(gun.getBulletDamage());
+    }
+
+    public void duck() {
+        if (stand) {
+            stand = false;
+            System.out.println("I'm ducked");
+            double duckHeight = (Window.getCelSizeY() * 1.5);
+            playerVisual.grow(0, -duckHeight);
+            playerVisual.translate(0, duckHeight);
+            gun.gunVisualUpdate(true, facedRight);
+        }
+    }
+
+    public void unDuck() {
+        if (!stand) {
+            stand = true;
+            System.out.println("I'm standing");
+            double duckHeight = (Window.getCelSizeY() * 1.5);
+            playerVisual.grow(0, duckHeight);
+            playerVisual.translate(0, -duckHeight);
+            gun.gunVisualUpdate(false, facedRight);
+        }
+    }
+
+    public void jumpEvent() {
+        int jumpHeight = 6;
+        if (jumping) {
+            //TODO iteration #1 & 2nd to last must do nothing
+            if (currentIteration == jumpHeight * 2) {
+                currentIteration = -1;
+                jumping = false;
+            } else if (currentIteration < jumpHeight) {
+                playerVisual.translate(0, -Window.getCelSizeY());
+            } else if (currentIteration < jumpHeight * 2) {
+                playerVisual.translate(0, Window.getCelSizeY());
+            }
+        }
+        currentIteration++;
+    }
+
+    public void jumpStart() {
+        jumping = true;
+        playerVisual.translate(0, -Window.getCelSizeY());
+        currentIteration++;
+    }
+
+
 }

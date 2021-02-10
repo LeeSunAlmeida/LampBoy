@@ -12,7 +12,7 @@ public class Order {
     public Order(String orderGiven, Object creator) {
         this.orderGiven = orderGiven;
         this.creator = creator;
-        Game.ordersList.add(this);
+        //Game.ordersList.add(this);
     }
 
     public String getOrderGiven() {

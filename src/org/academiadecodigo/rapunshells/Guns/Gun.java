@@ -21,17 +21,25 @@ public class Gun {
         this.bulletDamage = bulletDmg;
         this.shootSpeed = shootSpeed;
         this.player = player;
-        gunVisualDraw();
+        gunVisualDrawPlayer();
     }
 
     public Gun(int bulletDamage, int shootSpeed, Enemy enemy) {
         this.bulletDamage = bulletDamage;
         this.shootSpeed = shootSpeed;
         this.enemy = enemy;
+        gunVisualDrawEnemy();
     }
 
-    public void gunVisualDraw() {
+    public void gunVisualDrawPlayer() {
         gunVisual = new Rectangle(player.getCharStartPointX() + player.getCharWidth(), player.getCharStartPointY() + gunHeightStart, gunSize, gunSize);
+        gunVisual.draw();
+        gunVisual.fill();
+        gunVisual.setColor(Color.BLUE);
+    }
+
+    public void gunVisualDrawEnemy() {
+        gunVisual = new Rectangle(enemy.getCharStartPointX(), enemy.getCharStartPointY() + gunHeightStart, gunSize,gunSize);
         gunVisual.draw();
         gunVisual.fill();
         gunVisual.setColor(Color.BLUE);

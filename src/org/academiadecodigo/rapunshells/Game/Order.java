@@ -14,7 +14,6 @@ public class Order {
         this.orderGiven = orderGiven;
         this.creator = creator;
         System.out.println("order created");
-        //Game.ordersList.add(this);
     }
 
     public String getOrderGiven() {

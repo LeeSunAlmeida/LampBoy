@@ -12,7 +12,7 @@ public class Test {
 
         new Grid();
         Player player = new Player();
-        Soldier soldier = new Soldier();
+        Soldier soldier = new Soldier(1200);
 
         Foreground.drawFloor();
         try{

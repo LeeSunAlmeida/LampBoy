@@ -7,22 +7,15 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 
 public class Soldier extends Enemy {
-    private Rectangle soldierVisual;
-    private final int charHeight = Window.getCelSizeY() * 6;
-    private final int charWidth = Window.getCelSizeX() * 8;
-    private int charStartPointX;
-    private int charStartPointY = Window.getFLOORCOORD() - charHeight;
+
+    private int bulletDamage = 10;
+    private int shootSpeed = 3;
 
     public Soldier(int charStarPointX) {
-        this.charStartPointX = charStarPointX;
-        health = 100;
-        gun = new Gun(10, 500, this);
-        soldierVisual = new Rectangle(charStartPointX, charStartPointY, charWidth, charHeight);
-        soldierVisual.draw();
-        soldierVisual.fill();
-        soldierVisual.setColor(Color.BLACK);
+        super(charStarPointX);
+        super.health = 100;
+        gun = new Gun(bulletDamage, shootSpeed, this);
     }
-
 
     @Override
     public void hit(Bullet bullet) {
@@ -34,7 +27,5 @@ public class Soldier extends Enemy {
 
     }
 
-    public Rectangle getSoldierVisual() {
-        return soldierVisual;
-    }
+
 }

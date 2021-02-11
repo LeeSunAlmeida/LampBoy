@@ -26,7 +26,9 @@ public class Soldier extends Enemy {
         soldierVisual.setColor(Color.BLACK);
         while(health>0) {
             for(int i=0; i<10; i++) {
-                this.translate();
+                this.translate(1,0);
+                this.translate(1,0);
+                this.translate(1,0);
                 this.shoot();
             }
         }

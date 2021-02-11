@@ -7,7 +7,7 @@ import org.academiadecodigo.rapunshells.Guns.Hittable;
 import org.academiadecodigo.rapunshells.Player.Player;
 import org.academiadecodigo.simplegraphics.graphics.Movable;
 
-public abstract class Enemy implements CanShoot, Hittable, Movable {
+public abstract class Enemy implements CanShoot, Hittable, Movable{
 
     protected int health;
     protected Gun gun;

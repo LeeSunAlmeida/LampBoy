@@ -216,6 +216,10 @@ public class Player implements Hittable, Movable, KeyboardHandler {
         }
     }
 
+    public int getCharHeight() {
+        return charHeight;
+    }
+
     public void jumpEvent() {
         int jumpHeight = 6;
         if (jumping) {
@@ -240,3 +244,4 @@ public class Player implements Hittable, Movable, KeyboardHandler {
 
 
 }
+

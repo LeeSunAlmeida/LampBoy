@@ -22,7 +22,6 @@ public class Gun {
         this.shootSpeed = shootSpeed;
         this.player = player;
         gunVisualDraw();
-
     }
 
     public Gun(int bulletDamage, int shootSpeed, Enemy enemy) {

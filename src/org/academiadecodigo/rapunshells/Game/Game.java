@@ -47,6 +47,7 @@ public class Game {
 
         if(player.isJumping()) {
             player.jumpEvent();
+            player.getGun().gunVisualJump();
         }
 
         for(int i = 0; i < bulletList.size(); i++) {

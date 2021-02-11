@@ -27,11 +27,11 @@ public class Player implements Hittable, Movable, KeyboardHandler {
     private int currentIteration = 0;
     private static final String[] playerOrders = {"playerJump", "playerDuck", "playerUnduck", "playerLeft", "playerRight", "playerShoot"};
     private Rectangle playerVisual;
-
+    private int jumpHeight = 6;
 
     public Player() {
         health = 100;
-        gun = new Gun(10, 500, this);
+        gun = new Gun(10, 0, this);
         playerVisual = new Rectangle(charStartPointX, charStartPointY, charWidth, charHeight);
         playerVisual.draw();
         playerVisual.fill();
@@ -170,6 +170,18 @@ public class Player implements Hittable, Movable, KeyboardHandler {
         return playerOrders;
     }
 
+    public int getJumpHeight() {
+        return jumpHeight;
+    }
+
+    public int getCurrentIteration() {
+        return currentIteration;
+    }
+
+    public Gun getGun() {
+        return gun;
+    }
+
     //Orders Zone
 
     public void moveLeft() {
@@ -221,7 +233,6 @@ public class Player implements Hittable, Movable, KeyboardHandler {
     }
 
     public void jumpEvent() {
-        int jumpHeight = 6;
         if (jumping) {
             //TODO iteration #1 & 2nd to last must do nothing
             if (currentIteration == jumpHeight * 2) {

@@ -56,6 +56,16 @@ public class Gun {
         }
     }
 
+    public void gunVisualJump() {
+        int jumpHeight = player.getJumpHeight();
+        int currentIteration = player.getCurrentIteration();
+        if (currentIteration < jumpHeight) {
+            gunVisual.translate(0, -Window.getCelSizeY());
+        } else if (currentIteration < jumpHeight * 2) {
+            gunVisual.translate(0, Window.getCelSizeY());
+        }
+    }
+
     public void gunVisualLeftRight() {
         if(player.isFacedRight()) {
             gunVisual.translate(gunWidthDelta, 0);

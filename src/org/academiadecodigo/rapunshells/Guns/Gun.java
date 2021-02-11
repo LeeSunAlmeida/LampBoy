@@ -91,6 +91,8 @@ public class Gun {
         return bulletDamage;
     }
 
-
+    public Player getPlayer() {
+        return player;
+    }
 }
 

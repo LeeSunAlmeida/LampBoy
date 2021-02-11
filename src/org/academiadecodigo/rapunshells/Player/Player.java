@@ -253,6 +253,9 @@ public class Player implements Hittable, Movable, KeyboardHandler {
         currentIteration++;
     }
 
+    public void checkIfPlayerWasHit() {
+        // tenho de ter uma referencia para todas as bullets que são criadas no decorrer do jogo. How??
+    }
 
 }
 

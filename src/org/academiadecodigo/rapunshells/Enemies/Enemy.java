@@ -4,7 +4,6 @@ import org.academiadecodigo.rapunshells.Guns.Bullet;
 import org.academiadecodigo.rapunshells.Guns.CanShoot;
 import org.academiadecodigo.rapunshells.Guns.Gun;
 import org.academiadecodigo.rapunshells.Guns.Hittable;
-import org.academiadecodigo.rapunshells.Player.Player;
 import org.academiadecodigo.rapunshells.Window;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Movable;
@@ -18,6 +17,7 @@ public abstract class Enemy implements CanShoot, Hittable, Movable{
     private final int charWidth = Window.getCelSizeX() * 8;
     private final int charStartPointY = Window.getFLOORCOORD() - charHeight;
     private final int charStartPointX;
+    // cada vez que é criado un inimigo precisamos de guardar uma referencia para o gajo
 
     public Enemy(int charStartPointX) {
         this.charStartPointX = charStartPointX;

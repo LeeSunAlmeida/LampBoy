@@ -67,9 +67,11 @@ public class Gun {
     public void gunVisualJump() {
         int jumpHeight = player.getJumpHeight();
         int currentIteration = player.getCurrentIteration();
-        if (currentIteration < jumpHeight) {
+        if (currentIteration <= jumpHeight && currentIteration>0) {
+            System.out.println(currentIteration);
             gunVisual.translate(0, -Window.getCelSizeY());
-        } else if (currentIteration < jumpHeight * 2) {
+        } else if (currentIteration <= jumpHeight * 2 && currentIteration > 0) {
+            System.out.println(currentIteration);
             gunVisual.translate(0, Window.getCelSizeY());
         }
     }

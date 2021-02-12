@@ -6,6 +6,7 @@ import org.academiadecodigo.rapunshells.Game.Game;
 import org.academiadecodigo.rapunshells.Game.Order;
 import org.academiadecodigo.rapunshells.Game.Screen1;
 import org.academiadecodigo.rapunshells.Player.Player;
+import org.academiadecodigo.rapunshells.Window;
 import org.academiadecodigo.simplegraphics.graphics.Movable;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
@@ -18,14 +19,13 @@ public class Bullet implements Movable {
     private Gun gun;
     private Rectangle bulletVisual;
     private static final String[] bulletOrders = {"bulletMove"};
-    private static BulletList bulletList;
+    private static BulletList bulletList = new BulletList();
 
     public Bullet(int damage, Gun gun) {
         this.gun = gun;
         this.damage = damage;
-        //sempre que é criada uma nova bala temos de guardar uma referencia para ela
         bulletList.add(this);
-        bulletVisual = new Rectangle(gun.gunVisual.getX(), gun.gunVisual.getY(), 5, 5);//bala tem de sair da posição da gun
+        bulletVisual = new Rectangle(gun.gunVisual.getX(), gun.gunVisual.getY(), 5, 5);
         bulletVisual.draw();
         Game.orderList.add(new Order(bulletOrders[0], this));
 
@@ -33,11 +33,10 @@ public class Bullet implements Movable {
 
     public void bulletMove() {
         if(this.gun.getPlayer() != null) {
-            bulletVisual.translate(1, 0);
+            bulletVisual.translate(Window.getCelSizeX() * 4, 0);
             bulletCollisionDetector(Screen1.getSoldier());
-        }
-        else {
-            bulletVisual.translate(-1, 0);
+        } else {
+            bulletVisual.translate(- Window.getCelSizeX() * 2, 0);
             bulletCollisionDetector1(Screen1.getPlayer());
         }
     }
@@ -45,9 +44,7 @@ public class Bullet implements Movable {
     public void bulletCollisionDetector(Enemy enemy) {
         if (bulletVisual.getX() >= enemy.getEnemyVisual().getX() && bulletVisual.getX() <= enemy.getEnemyVisual().getX() + enemy.getCharWidth()
                 && bulletVisual.getY() >= enemy.getEnemyVisual().getY() && (bulletVisual.getY() <= enemy.getEnemyVisual().getY() + enemy.getCharHeight())) {
-
             enemy.hit(this);
-            //TODO bullets need to know all instances of Player & Enemy
         }
     }
 

@@ -17,7 +17,7 @@ public abstract class Enemy implements CanShoot, Hittable, Movable{
     private final int charWidth = Window.getCelSizeX() * 8;
     private final int charStartPointY = Window.getFLOORCOORD() - charHeight;
     private final int charStartPointX;
-    // cada vez que é criado un inimigo precisamos de guardar uma referencia para o gajo
+    protected int shootSpeed;
 
     public Enemy(int charStartPointX) {
         this.charStartPointX = charStartPointX;
@@ -45,10 +45,10 @@ public abstract class Enemy implements CanShoot, Hittable, Movable{
 
         if (!isDead()) {
             health -= bullet.getDamage();
-
         }
-
     }
+
+
 
     public int getCharHeight() {
         return charHeight;

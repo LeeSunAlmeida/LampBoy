@@ -4,8 +4,8 @@ import org.academiadecodigo.rapunshells.Guns.Bullet;
 import org.academiadecodigo.rapunshells.Guns.Gun;
 
 public class ArmoredSoldier extends Enemy{
-    private int bulletDamage = 30;
-    private int shootSpeed = 4;
+    private final int bulletDamage = 30;
+    private final int shootSpeed = 4;
 
     public ArmoredSoldier(int charStarPointX) {
         super(charStarPointX);

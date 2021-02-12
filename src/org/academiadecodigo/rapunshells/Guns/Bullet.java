@@ -4,6 +4,7 @@ package org.academiadecodigo.rapunshells.Guns;
 import org.academiadecodigo.rapunshells.Enemies.Enemy;
 import org.academiadecodigo.rapunshells.Game.Game;
 import org.academiadecodigo.rapunshells.Game.Order;
+import org.academiadecodigo.rapunshells.Game.Screen1;
 import org.academiadecodigo.rapunshells.Player.Player;
 import org.academiadecodigo.simplegraphics.graphics.Movable;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
@@ -33,26 +34,26 @@ public class Bullet implements Movable {
     public void bulletMove() {
         if(this.gun.getPlayer() != null) {
             bulletVisual.translate(1, 0);
-            bulletCollisionDetector();
+            bulletCollisionDetector(Screen1.getSoldier());
         }
         else {
             bulletVisual.translate(-1, 0);
-            bulletCollisionDetector1();
+            bulletCollisionDetector1(Screen1.getPlayer());
         }
     }
 
-    // todo bullet will have collision detection, calls Hittable.hit()
-    // bulletColisionDetector must know all enemys and the player
     public void bulletCollisionDetector(Enemy enemy) {
-        //se tiver um array com todos os inimigos é só fazer um loop por eles todos
-        if (bulletVisual.getX() >= enemy.getEnemyVisual().getX() && bulletVisual.getX() <= enemy.getEnemyVisual().getX() + enemy.getCharWidth() && bulletVisual.getY() >= enemy.getEnemyVisual().getY()) {
+        if (bulletVisual.getX() >= enemy.getEnemyVisual().getX() && bulletVisual.getX() <= enemy.getEnemyVisual().getX() + enemy.getCharWidth()
+                && bulletVisual.getY() >= enemy.getEnemyVisual().getY() && (bulletVisual.getY() <= enemy.getEnemyVisual().getY() + enemy.getCharHeight())) {
+
             enemy.hit(this);
             //TODO bullets need to know all instances of Player & Enemy
         }
     }
 
     public void bulletCollisionDetector1(Player player) {
-        if (bulletVisual.getX() >= player.getPlayerVisual().getX() && bulletVisual.getX() <= player.getPlayerVisual().getX() + player.getCharWidth() && bulletVisual.getY() >= player.getPlayerVisual().getY()) {
+        if ((bulletVisual.getX() >= player.getPlayerVisual().getX()) && (bulletVisual.getX() <= player.getPlayerVisual().getX() + player.getCharWidth())
+                && (bulletVisual.getY() >= player.getPlayerVisual().getY()) && (bulletVisual.getY() <= player.getPlayerVisual().getY() + player.getCharHeight())) {
             player.hit(this);
         }
     }

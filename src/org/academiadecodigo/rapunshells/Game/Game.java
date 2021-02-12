@@ -42,6 +42,7 @@ public class Game {
             } else if (orderStr.equals(playerOrders[5])) {
                 Player playerCreator = (Player) creator;
                 playerCreator.shoot();
+                System.out.println("Player.shoot() Order");
             }
 
         }
@@ -58,7 +59,7 @@ public class Game {
         }
 
 
-        Thread.sleep(300);
+        Thread.sleep(1000);
         executeOrders(player);
     }
 }

@@ -14,6 +14,8 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
+import java.sql.SQLOutput;
+
 public class Player implements Hittable, Movable, KeyboardHandler {
     private int health;
     private Gun gun;
@@ -38,6 +40,7 @@ public class Player implements Hittable, Movable, KeyboardHandler {
         playerVisual.setColor(Color.MAGENTA);
         keyboardMove();
     }
+
 
 
     public void translate(double v, double v1) {
@@ -87,14 +90,13 @@ public class Player implements Hittable, Movable, KeyboardHandler {
         switch (keyboardEvent.getKey()) {
             case KeyboardEvent.KEY_LEFT:
                 Game.orderList.add(new Order(playerOrders[3], this));
-                System.out.println("left 1");
                 break;
             case KeyboardEvent.KEY_RIGHT:
                 Game.orderList.add(new Order(playerOrders[4], this));
-                System.out.println("right 1");
                 break;
             case KeyboardEvent.KEY_SPACE:
                 Game.orderList.add(new Order(playerOrders[5], this));
+                System.out.println("space input");
                 break;
             case KeyboardEvent.KEY_UP:
                 Game.orderList.add(new Order(playerOrders[0], this));
@@ -204,6 +206,7 @@ public class Player implements Hittable, Movable, KeyboardHandler {
 
     public void shoot() {
         gun.shootBullet(gun.getBulletDamage());
+        System.out.println("shoot() Method");
     }
 
     public void duck() {

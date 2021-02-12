@@ -82,8 +82,9 @@ public class Gun {
         }
     }
 
-    public Bullet shootBullet(int bulletDamage) {
-        return new Bullet(bulletDamage, this);
+    public void shootBullet(int bulletDamage) {
+        System.out.println("gun.shootBullet() Method");
+        new Bullet(bulletDamage, this);
         //todo number of turns between each shot
     }
 

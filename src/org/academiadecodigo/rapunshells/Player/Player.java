@@ -41,8 +41,6 @@ public class Player implements Hittable, Movable, KeyboardHandler {
         keyboardMove();
     }
 
-
-
     public void translate(double v, double v1) {
 
     }
@@ -89,10 +87,10 @@ public class Player implements Hittable, Movable, KeyboardHandler {
 
         switch (keyboardEvent.getKey()) {
             case KeyboardEvent.KEY_LEFT:
-                Game.orderList.add(new Order(playerOrders[3], this));
+                moveLeft();
                 break;
             case KeyboardEvent.KEY_RIGHT:
-                Game.orderList.add(new Order(playerOrders[4], this));
+                moveRight();
                 break;
             case KeyboardEvent.KEY_SPACE:
                 Game.orderList.add(new Order(playerOrders[5], this));
@@ -102,7 +100,7 @@ public class Player implements Hittable, Movable, KeyboardHandler {
                 Game.orderList.add(new Order(playerOrders[0], this));
                 break;
             case KeyboardEvent.KEY_DOWN:
-                Game.orderList.add(new Order(playerOrders[1], this));
+                duck();
                 break;
         }
     }
@@ -111,7 +109,7 @@ public class Player implements Hittable, Movable, KeyboardHandler {
     public void keyReleased(KeyboardEvent keyboardEvent) {
         switch (keyboardEvent.getKey()) {
             case KeyboardEvent.KEY_DOWN:
-                Game.orderList.add(new Order(playerOrders[2], this));
+                unDuck();
                 break;
         }
     }
@@ -252,12 +250,12 @@ public class Player implements Hittable, Movable, KeyboardHandler {
 
     public void jumpStart() {
         jumping = true;
-        playerVisual.translate(0, -Window.getCelSizeY());
-        currentIteration++;
+        //playerVisual.translate(0, -Window.getCelSizeY());
+        //currentIteration++;
     }
 
     public void checkIfPlayerWasHit() {
-        // tenho de ter uma referencia para todas as bullets que são criadas no decorrer do jogo. How??
+        //TODO tenho de ter uma referencia para todas as bullets que são criadas no decorrer do jogo. How??
     }
 
 }

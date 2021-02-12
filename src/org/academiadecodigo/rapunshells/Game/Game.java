@@ -47,19 +47,20 @@ public class Game {
 
         }
 
+        //Jumpchecker
         if(player.isJumping()) {
             player.jumpEvent();
             player.getGun().gunVisualJump();
         }
 
+        //Get all bullets moving once
         for(int i = 0; i < bulletList.size(); i++) {
             Bullet bullet = (Bullet) bulletList.get(i);
-            //mete um loop aqui para a bulletMove se não ela só anda um pixel
             bullet.bulletMove();
         }
 
 
-        Thread.sleep(1000);
+        Thread.sleep(50);
         executeOrders(player);
     }
 }

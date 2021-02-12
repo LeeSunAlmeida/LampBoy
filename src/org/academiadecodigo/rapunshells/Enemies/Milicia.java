@@ -4,11 +4,13 @@ import org.academiadecodigo.rapunshells.Guns.Bullet;
 import org.academiadecodigo.rapunshells.Guns.Gun;
 
 public class Milicia extends Enemy{
+    private int bulletDamage = 20;
+    private int shootSpeed = 1;
 
-
-    public Milicia() {
-        health = 70;
-        gun = new Gun(10, 300, this);
+    public Milicia(int charStartPointX) {
+        super(charStartPointX);
+        super.health = 80;
+        gun = new Gun(bulletDamage, shootSpeed, this);
     }
 
     @Override

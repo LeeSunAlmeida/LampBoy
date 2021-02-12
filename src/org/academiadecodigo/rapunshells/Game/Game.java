@@ -3,6 +3,7 @@ package org.academiadecodigo.rapunshells.Game;
 import org.academiadecodigo.rapunshells.Guns.Bullet;
 import org.academiadecodigo.rapunshells.Player.Player;
 
+
 import java.util.List;
 
 public class Game {
@@ -10,6 +11,7 @@ public class Game {
     public static List orderList = ordersList.getList();
     public static List bulletList = Bullet.BulletList.getList();
     public static final String[] playerOrders = Player.getPlayerOrders();
+    
 
     public static void gameOver() {
 
@@ -41,21 +43,24 @@ public class Game {
             } else if (orderStr.equals(playerOrders[5])) {
                 Player playerCreator = (Player) creator;
                 playerCreator.shoot();
+                System.out.println("Player.shoot() Order");
             }
 
         }
 
         if(player.isJumping()) {
             player.jumpEvent();
+            player.getGun().gunVisualJump();
         }
 
         for(int i = 0; i < bulletList.size(); i++) {
             Bullet bullet = (Bullet) bulletList.get(i);
+            //mete um loop aqui para a bulletMove se não ela só anda um pixel
             bullet.bulletMove();
         }
 
 
-        Thread.sleep(300);
+        Thread.sleep(1000);
         executeOrders(player);
     }
 }

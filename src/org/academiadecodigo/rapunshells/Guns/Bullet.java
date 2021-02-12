@@ -1,8 +1,11 @@
 package org.academiadecodigo.rapunshells.Guns;
 
+
+import org.academiadecodigo.rapunshells.Enemies.Enemy;
 import org.academiadecodigo.rapunshells.Game.Game;
 import org.academiadecodigo.rapunshells.Game.Order;
-import org.academiadecodigo.rapunshells.Window;
+import org.academiadecodigo.rapunshells.Game.Screen1;
+import org.academiadecodigo.rapunshells.Player.Player;
 import org.academiadecodigo.simplegraphics.graphics.Movable;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
@@ -17,21 +20,43 @@ public class Bullet implements Movable {
     private static final String[] bulletOrders = {"bulletMove"};
     private static BulletList bulletList;
 
-    public Bullet(int damage,Gun gun) {
+    public Bullet(int damage, Gun gun) {
         this.gun = gun;
         this.damage = damage;
+        //sempre que é criada uma nova bala temos de guardar uma referencia para ela
         bulletList.add(this);
         bulletVisual = new Rectangle(gun.gunVisual.getX(), gun.gunVisual.getY(), 5, 5);//bala tem de sair da posição da gun
         bulletVisual.draw();
         Game.orderList.add(new Order(bulletOrders[0], this));
+
     }
 
     public void bulletMove() {
+        if(this.gun.getPlayer() != null) {
             bulletVisual.translate(1, 0);
+            bulletCollisionDetector(Screen1.getSoldier());
+        }
+        else {
+            bulletVisual.translate(-1, 0);
+            bulletCollisionDetector1(Screen1.getPlayer());
+        }
     }
 
-    // todo bullet will have collision detection, calls Hittable.hit()
+    public void bulletCollisionDetector(Enemy enemy) {
+        if (bulletVisual.getX() >= enemy.getEnemyVisual().getX() && bulletVisual.getX() <= enemy.getEnemyVisual().getX() + enemy.getCharWidth()
+                && bulletVisual.getY() >= enemy.getEnemyVisual().getY() && (bulletVisual.getY() <= enemy.getEnemyVisual().getY() + enemy.getCharHeight())) {
 
+            enemy.hit(this);
+            //TODO bullets need to know all instances of Player & Enemy
+        }
+    }
+
+    public void bulletCollisionDetector1(Player player) {
+        if ((bulletVisual.getX() >= player.getPlayerVisual().getX()) && (bulletVisual.getX() <= player.getPlayerVisual().getX() + player.getCharWidth())
+                && (bulletVisual.getY() >= player.getPlayerVisual().getY()) && (bulletVisual.getY() <= player.getPlayerVisual().getY() + player.getCharHeight())) {
+            player.hit(this);
+        }
+    }
 
     public int getDamage() {
         return damage;

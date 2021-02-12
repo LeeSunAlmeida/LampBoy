@@ -6,39 +6,47 @@ import org.academiadecodigo.rapunshells.Guns.Bullet;
 import org.academiadecodigo.rapunshells.Guns.Gun;
 import org.academiadecodigo.rapunshells.Guns.Hittable;
 import org.academiadecodigo.rapunshells.Window;
-import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Movable;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
+
+
 public class Player implements Hittable, Movable, KeyboardHandler {
+
     private int health;
     private Gun gun;
+
     private int charHeight = Window.getCelSizeY() * 6;
     private int charWidth = Window.getCelSizeX() * 8;
+
     private int charStartPointX = Window.getPADDING() + 10;
     private int charStartPointY = Window.getFLOORCOORD() - charHeight;
+
     private boolean stand = true;
     private boolean facedRight = true;
     private boolean jumping = false;
     private int currentIteration = 0;
     private static final String[] playerOrders = {"playerJump", "playerDuck", "playerUnduck", "playerLeft", "playerRight", "playerShoot"};
+
     private Picture playerVisual;
+    private int jumpHeight = 6;
 
 
     public Player() {
         health = 100;
-        gun = new Gun(10, 500, this);
-        playerVisual = new Picture(charStartPointX, charStartPointY, "tester-laval-bpy.png");
+        gun = new Gun(10, 0, this);
+        playerVisual = new Picture(charStartPointX, charStartPointY, "lamp-boy.png");
         playerVisual.draw();
         playerVisual.grow(0,-40);
         //playerVisual.setColor(Color.MAGENTA);
         keyboardMove();
+
     }
+
 
 
     public void translate(double v, double v1) {
@@ -88,14 +96,13 @@ public class Player implements Hittable, Movable, KeyboardHandler {
         switch (keyboardEvent.getKey()) {
             case KeyboardEvent.KEY_LEFT:
                 Game.orderList.add(new Order(playerOrders[3], this));
-                System.out.println("left 1");
                 break;
             case KeyboardEvent.KEY_RIGHT:
                 Game.orderList.add(new Order(playerOrders[4], this));
-                System.out.println("right 1");
                 break;
             case KeyboardEvent.KEY_SPACE:
                 Game.orderList.add(new Order(playerOrders[5], this));
+                System.out.println("space input");
                 break;
             case KeyboardEvent.KEY_UP:
                 Game.orderList.add(new Order(playerOrders[0], this));
@@ -171,6 +178,18 @@ public class Player implements Hittable, Movable, KeyboardHandler {
         return playerOrders;
     }
 
+    public int getJumpHeight() {
+        return jumpHeight;
+    }
+
+    public int getCurrentIteration() {
+        return currentIteration;
+    }
+
+    public Gun getGun() {
+        return gun;
+    }
+
     //Orders Zone
 
     public void moveLeft() {
@@ -193,6 +212,7 @@ public class Player implements Hittable, Movable, KeyboardHandler {
 
     public void shoot() {
         gun.shootBullet(gun.getBulletDamage());
+        System.out.println("shoot() Method");
     }
 
     public void duck() {
@@ -217,9 +237,12 @@ public class Player implements Hittable, Movable, KeyboardHandler {
         }
     }
 
+    public int getCharHeight() {
+        return charHeight;
+    }
+
     public void jumpEvent() {
 
-        int jumpHeight = 6;
         if (jumping) {
             //TODO iteration #1 & 2nd to last must do nothing
             if (currentIteration == jumpHeight * 2) {
@@ -240,5 +263,9 @@ public class Player implements Hittable, Movable, KeyboardHandler {
         currentIteration++;
     }
 
+    public void checkIfPlayerWasHit() {
+        // tenho de ter uma referencia para todas as bullets que são criadas no decorrer do jogo. How??
+    }
 
 }
+

@@ -21,18 +21,25 @@ public class Gun {
         this.bulletDamage = bulletDmg;
         this.shootSpeed = shootSpeed;
         this.player = player;
-        gunVisualDraw();
-
+        gunVisualDrawPlayer();
     }
 
     public Gun(int bulletDamage, int shootSpeed, Enemy enemy) {
         this.bulletDamage = bulletDamage;
         this.shootSpeed = shootSpeed;
         this.enemy = enemy;
+        gunVisualDrawEnemy();
     }
 
-    public void gunVisualDraw() {
+    public void gunVisualDrawPlayer() {
         gunVisual = new Rectangle(player.getCharStartPointX() + player.getCharWidth(), player.getCharStartPointY() + gunHeightStart, gunSize, gunSize);
+        gunVisual.draw();
+        gunVisual.fill();
+        gunVisual.setColor(Color.BLUE);
+    }
+
+    public void gunVisualDrawEnemy() {
+        gunVisual = new Rectangle(enemy.getCharStartPointX(), enemy.getCharStartPointY() + gunHeightStart, gunSize,gunSize);
         gunVisual.draw();
         gunVisual.fill();
         gunVisual.setColor(Color.BLUE);
@@ -57,6 +64,16 @@ public class Gun {
         }
     }
 
+    public void gunVisualJump() {
+        int jumpHeight = player.getJumpHeight();
+        int currentIteration = player.getCurrentIteration();
+        if (currentIteration < jumpHeight) {
+            gunVisual.translate(0, -Window.getCelSizeY());
+        } else if (currentIteration < jumpHeight * 2) {
+            gunVisual.translate(0, Window.getCelSizeY());
+        }
+    }
+
     public void gunVisualLeftRight() {
         if(player.isFacedRight()) {
             gunVisual.translate(gunWidthDelta, 0);
@@ -65,8 +82,9 @@ public class Gun {
         }
     }
 
-    public Bullet shootBullet(int bulletDamage) {
-        return new Bullet(bulletDamage, this);
+    public void shootBullet(int bulletDamage) {
+        System.out.println("gun.shootBullet() Method");
+        new Bullet(bulletDamage, this);
         //todo number of turns between each shot
     }
 
@@ -74,6 +92,8 @@ public class Gun {
         return bulletDamage;
     }
 
-
+    public Player getPlayer() {
+        return player;
+    }
 }
 

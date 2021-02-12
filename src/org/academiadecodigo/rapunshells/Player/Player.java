@@ -3,7 +3,6 @@ package org.academiadecodigo.rapunshells.Player;
 import org.academiadecodigo.rapunshells.Game.Game;
 import org.academiadecodigo.rapunshells.Game.Order;
 import org.academiadecodigo.rapunshells.Guns.Bullet;
-import org.academiadecodigo.rapunshells.Guns.Gun;
 import org.academiadecodigo.rapunshells.Guns.Hittable;
 import org.academiadecodigo.rapunshells.Window;
 import org.academiadecodigo.simplegraphics.graphics.Color;
@@ -13,8 +12,6 @@ import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
-
-import java.sql.SQLOutput;
 
 public class Player implements Hittable, Movable, KeyboardHandler {
     private int health;
@@ -237,15 +234,16 @@ public class Player implements Hittable, Movable, KeyboardHandler {
         if (jumping) {
             //TODO iteration #1 & 2nd to last must do nothing
             if (currentIteration == jumpHeight * 2) {
-                currentIteration = -1;
+                currentIteration = 0;
                 jumping = false;
             } else if (currentIteration < jumpHeight) {
                 playerVisual.translate(0, -Window.getCelSizeY());
+                currentIteration++;
             } else if (currentIteration < jumpHeight * 2) {
                 playerVisual.translate(0, Window.getCelSizeY());
+                currentIteration++;
             }
         }
-        currentIteration++;
     }
 
     public void jumpStart() {

@@ -1,9 +1,5 @@
 package org.academiadecodigo.rapunshells.Enemies;
 import org.academiadecodigo.rapunshells.Guns.Bullet;
-import org.academiadecodigo.rapunshells.Guns.Gun;
-import org.academiadecodigo.rapunshells.Window;
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 
 public class Soldier extends Enemy {

@@ -13,6 +13,7 @@ import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Player implements Hittable, Movable, KeyboardHandler {
     private int health;
@@ -26,16 +27,16 @@ public class Player implements Hittable, Movable, KeyboardHandler {
     private boolean jumping = false;
     private int currentIteration = 0;
     private static final String[] playerOrders = {"playerJump", "playerDuck", "playerUnduck", "playerLeft", "playerRight", "playerShoot"};
-    private Rectangle playerVisual;
+    private Picture playerVisual;
 
 
     public Player() {
         health = 100;
         gun = new Gun(10, 500, this);
-        playerVisual = new Rectangle(charStartPointX, charStartPointY, charWidth, charHeight);
+        playerVisual = new Picture(charStartPointX, charStartPointY, "tester-laval-bpy.png");
         playerVisual.draw();
-        playerVisual.fill();
-        playerVisual.setColor(Color.MAGENTA);
+        playerVisual.grow(0,-40);
+        //playerVisual.setColor(Color.MAGENTA);
         keyboardMove();
     }
 
@@ -126,7 +127,7 @@ public class Player implements Hittable, Movable, KeyboardHandler {
 
 
     //Getters
-    public Rectangle getPlayerVisual() {
+    public Picture getPlayerVisual() {
         return playerVisual;
     }
 
@@ -217,6 +218,7 @@ public class Player implements Hittable, Movable, KeyboardHandler {
     }
 
     public void jumpEvent() {
+
         int jumpHeight = 6;
         if (jumping) {
             //TODO iteration #1 & 2nd to last must do nothing

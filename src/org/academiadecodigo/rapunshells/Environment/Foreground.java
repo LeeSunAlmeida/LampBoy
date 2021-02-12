@@ -8,6 +8,10 @@ public class Foreground {
     public static void drawFloor() {
         Line floor = new Line(Window.getPADDING(), Window.getFLOORCOORD(), Window.getWidth() + Window.getPADDING(), Window.getFLOORCOORD());
         floor.draw();
+
     }
+
+
+
 
 }

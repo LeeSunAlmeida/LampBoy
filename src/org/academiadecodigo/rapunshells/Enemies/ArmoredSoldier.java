@@ -1,6 +1,7 @@
 package org.academiadecodigo.rapunshells.Enemies;
 
 import org.academiadecodigo.rapunshells.Guns.Bullet;
+import org.academiadecodigo.rapunshells.Guns.Gun;
 
 public class ArmoredSoldier extends Enemy{
     private final int bulletDamage = 30;

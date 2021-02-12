@@ -2,6 +2,7 @@ package org.academiadecodigo.rapunshells.Enemies;
 
 import org.academiadecodigo.rapunshells.Guns.Bullet;
 import org.academiadecodigo.rapunshells.Guns.CanShoot;
+import org.academiadecodigo.rapunshells.Guns.Gun;
 import org.academiadecodigo.rapunshells.Guns.Hittable;
 import org.academiadecodigo.rapunshells.Window;
 import org.academiadecodigo.simplegraphics.graphics.Color;

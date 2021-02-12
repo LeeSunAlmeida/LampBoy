@@ -1,5 +1,6 @@
 package org.academiadecodigo.rapunshells.Enemies;
 import org.academiadecodigo.rapunshells.Guns.Bullet;
+import org.academiadecodigo.rapunshells.Guns.Gun;
 
 
 public class Soldier extends Enemy {

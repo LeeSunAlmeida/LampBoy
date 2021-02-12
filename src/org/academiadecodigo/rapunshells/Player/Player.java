@@ -3,6 +3,7 @@ package org.academiadecodigo.rapunshells.Player;
 import org.academiadecodigo.rapunshells.Game.Game;
 import org.academiadecodigo.rapunshells.Game.Order;
 import org.academiadecodigo.rapunshells.Guns.Bullet;
+import org.academiadecodigo.rapunshells.Guns.Gun;
 import org.academiadecodigo.rapunshells.Guns.Hittable;
 import org.academiadecodigo.rapunshells.Window;
 import org.academiadecodigo.simplegraphics.graphics.Color;

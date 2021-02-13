@@ -27,7 +27,7 @@ public class Bullet implements Movable {
         this.gun = gun;
         this.damage = damage;
         bulletList.add(this);
-        bulletVisual = new Picture(gun.playerGunVisual.getX(), gun.playerGunVisual.getY(), "bullet-pos.png");
+        bulletVisual = new Picture(gun.getGunVisual().getX(), gun.getGunVisual().getY(), "bullet-pos.png");
         bulletVisual.draw();
         Game.orderList.add(new Order(bulletOrders[0], this));
 
@@ -47,7 +47,6 @@ public class Bullet implements Movable {
         if (bulletVisual.getX() >= enemy.getEnemyVisual().getX() && bulletVisual.getX() <= enemy.getEnemyVisual().getX() + enemy.getCharWidth()
                 && bulletVisual.getY() >= enemy.getEnemyVisual().getY() && (bulletVisual.getY() <= enemy.getEnemyVisual().getY() + enemy.getCharHeight())) {
             System.out.println("bullet touched enemy");
-            //bulletVisual.delete();  //quando a bala atinge o inimigo ela não continua a andar
             exist = false;
             enemy.hit(this);
             System.out.println(enemy.getHealth());

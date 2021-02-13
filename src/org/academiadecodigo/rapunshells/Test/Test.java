@@ -22,6 +22,7 @@ public class Test {
 
         //new Screen2().BackGround2();
 
+
         Foreground.drawFloor();
         try{
             Game.executeOrders(Screen1.getPlayer());

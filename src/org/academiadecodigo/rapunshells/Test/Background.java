@@ -16,8 +16,8 @@ public class Background {
         backGround1 = new Picture(Window.getPADDING(), Window.getPADDING(), "background-mars.jpg");
 
         backGround1.draw();
-        backGround1.grow(75, 0);
-        backGround1.translate(75, 0);
+        backGround1.grow(80, 0);
+        backGround1.translate(80, 0);
 
         return backGround1;
 
@@ -28,8 +28,8 @@ public class Background {
 
         backGround2 = new Picture(Window.getPADDING(), Window.getPADDING(), "space-background.jpg");
         backGround2.draw();
-        // backGround2.grow(75,0);
-        //backGround2.translate(75,0);
+        backGround2.grow(10,10);
+        backGround2.translate(Window.getPADDING(),Window.getPADDING());
 
 
         return backGround2;
@@ -38,10 +38,10 @@ public class Background {
 
     public Picture BackGround3() {
 
-        backGround3 = new Picture(Window.getPADDING(), Window.getPADDING(), "back-ground-nigth.png");
+        backGround3 = new Picture(Window.getPADDING(), Window.getPADDING(), "background-milicia.jpg");
         backGround3.draw();
-        // backGround3.grow(75,0);
-        //backGround3.translate(75,0);
+        backGround3.grow(47,10);
+        backGround3.translate(Window.getPADDING() + 37, Window.getPADDING());
 
 
         return backGround3;

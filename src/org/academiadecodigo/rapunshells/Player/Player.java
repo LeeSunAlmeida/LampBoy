@@ -41,7 +41,7 @@ public class Player implements Hittable, Movable, KeyboardHandler {
         gun = new Gun(10, 0, this);
         playerVisual = new Picture(charStartPointX, charStartPointY, "lamp-boy.png");
         playerVisual.draw();
-        playerVisual.grow(0,-40);
+        //playerVisual.grow(0,-40);
         //playerVisual.setColor(Color.MAGENTA);
         keyboardMove();
 

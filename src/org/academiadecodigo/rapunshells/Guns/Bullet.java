@@ -9,6 +9,7 @@ import org.academiadecodigo.rapunshells.Player.Player;
 import org.academiadecodigo.rapunshells.Window;
 import org.academiadecodigo.simplegraphics.graphics.Movable;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -17,7 +18,7 @@ public class Bullet implements Movable {
 
     private int damage;
     private Gun gun;
-    private Rectangle bulletVisual;
+    private Picture bulletVisual;
     private static final String[] bulletOrders = {"bulletMove"};
     private static BulletList bulletList = new BulletList();
 
@@ -25,7 +26,7 @@ public class Bullet implements Movable {
         this.gun = gun;
         this.damage = damage;
         bulletList.add(this);
-        bulletVisual = new Rectangle(gun.gunVisual.getX(), gun.gunVisual.getY(), 5, 5);
+        bulletVisual = new Picture(gun.gunVisual.getX(), gun.gunVisual.getY(), "bullet-pos.png");
         bulletVisual.draw();
         Game.orderList.add(new Order(bulletOrders[0], this));
 

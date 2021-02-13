@@ -8,11 +8,12 @@ import org.academiadecodigo.rapunshells.Window;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Movable;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public abstract class Enemy implements CanShoot, Hittable, Movable{
     protected int health;
     protected Gun gun;
-    private final Rectangle enemyVisual;
+    private final Picture enemyVisual;
     private final int charHeight = Window.getCelSizeY() * 6;
     private final int charWidth = Window.getCelSizeX() * 8;
     private final int charStartPointY = Window.getFLOORCOORD() - charHeight;
@@ -21,10 +22,11 @@ public abstract class Enemy implements CanShoot, Hittable, Movable{
 
     public Enemy(int charStartPointX) {
         this.charStartPointX = charStartPointX;
-        enemyVisual = new Rectangle(charStartPointX, charStartPointY, charWidth, charHeight);
+        enemyVisual = new Picture(charStartPointX, charStartPointY, "scyco-alien.png");
         enemyVisual.draw();
-        enemyVisual.fill();
-        enemyVisual.setColor(Color.BLACK);
+       // enemyVisual.grow();
+       // enemyVisual.fill();
+        //enemyVisual.setColor(Color.BLACK);
     }
 
     @Override
@@ -66,7 +68,7 @@ public abstract class Enemy implements CanShoot, Hittable, Movable{
         return charStartPointY;
     }
 
-    public Rectangle getEnemyVisual() {
+    public Picture getEnemyVisual() {
         return enemyVisual;
     }
 

@@ -49,6 +49,8 @@ public class Bullet implements Movable {
             bulletVisual.delete();  //quando a bala atinge o inimigo ela não continua a andar
             enemy.hit(this);
             System.out.println(enemy.getHealth());
+        } else if(bulletVisual.getX() >= Window.getCelSizeX()*Window.getCols()){
+            bulletVisual.delete(); //TODO transform delete em erase
         }
     }
 
@@ -57,6 +59,8 @@ public class Bullet implements Movable {
                 && (bulletVisual.getY() >= player.getPlayerVisual().getY()) && (bulletVisual.getY() <= player.getPlayerVisual().getY() + player.getCharHeight())) {
             bulletVisual.delete();  //quando a bala atinge o player ela não continua a andar
             player.hit(this);
+        } else if(bulletVisual.getX() <= Window.getPADDING()) {
+            bulletVisual.delete(); //TODO transform delete em erase
         }
     }
 

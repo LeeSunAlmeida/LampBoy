@@ -6,7 +6,6 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 public class Order {
-    private static final String[] enemyOrders = {"enemyWalkToPlayer", "enemyShoot"};
     private String orderGiven;
     private Object creator;
 

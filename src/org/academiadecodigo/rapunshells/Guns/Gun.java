@@ -5,13 +5,14 @@ import org.academiadecodigo.rapunshells.Enemies.Enemy;
 import org.academiadecodigo.rapunshells.Player.Player;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Gun {
     private int bulletDamage;
     private int shootSpeed;
     private Player player;
     private Enemy enemy;
-    public Rectangle gunVisual;
+    private Rectangle gunVisual;
     public int gunSize = 10;
     public int gunHeightStart = 5 * Window.getCelSizeY();
     public int gunHeightDelta = 2 * Window.getCelSizeY();
@@ -33,6 +34,8 @@ public class Gun {
         this.gunVisualDrawEnemy();
     }
 
+
+
     public void gunVisualDrawPlayer() {
         this.gunVisual = new Rectangle((double)(this.player.getCharStartPointX() + this.player.getCharWidth()), (double)(this.player.getCharStartPointY() + this.gunHeightStart), (double)this.gunSize, (double)this.gunSize);
         this.gunVisual.draw();
@@ -42,9 +45,9 @@ public class Gun {
 
     public void gunVisualDrawEnemy() {
         this.gunVisual = new Rectangle((double)this.enemy.getCharStartPointX(), (double)(this.enemy.getCharStartPointY() + this.gunHeightStart), (double)this.gunSize, (double)this.gunSize);
-        //this.gunVisual.draw();
-        //this.gunVisual.fill();
-        //this.gunVisual.setColor(Color.BLUE);
+        this.gunVisual.draw();
+        this.gunVisual.fill();
+        this.gunVisual.setColor(Color.BLUE);
     }
 
     public void gunVisualUpdate(boolean lastFrameStand, boolean lastFrameFacedRight) {
@@ -98,5 +101,9 @@ public class Gun {
 
     public Player getPlayer() {
         return this.player;
+    }
+
+    public Rectangle getGunVisual() {
+        return gunVisual;
     }
 }

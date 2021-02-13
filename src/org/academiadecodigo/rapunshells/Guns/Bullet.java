@@ -21,6 +21,7 @@ public class Bullet implements Movable {
     private Picture bulletVisual;
     private static final String[] bulletOrders = {"bulletMove"};
     private static BulletList bulletList = new BulletList();
+    private boolean exist = true;
 
     public Bullet(int damage, Gun gun) {
         this.gun = gun;
@@ -46,11 +47,13 @@ public class Bullet implements Movable {
         if (bulletVisual.getX() >= enemy.getEnemyVisual().getX() && bulletVisual.getX() <= enemy.getEnemyVisual().getX() + enemy.getCharWidth()
                 && bulletVisual.getY() >= enemy.getEnemyVisual().getY() && (bulletVisual.getY() <= enemy.getEnemyVisual().getY() + enemy.getCharHeight())) {
             System.out.println("bullet touched enemy");
-            bulletVisual.delete();  //quando a bala atinge o inimigo ela não continua a andar
+            //bulletVisual.delete();  //quando a bala atinge o inimigo ela não continua a andar
+            exist = false;
             enemy.hit(this);
             System.out.println(enemy.getHealth());
-        } else if(bulletVisual.getX() >= Window.getCelSizeX()*Window.getCols()){
-            bulletVisual.delete(); //TODO transform delete em erase
+        } else if(bulletVisual.getX() /* + bulletSize */ >= Window.getWidth()){
+            //bulletVisual.delete(); //TODO transform delete em erase
+            exist = false;
         }
     }
 
@@ -73,6 +76,10 @@ public class Bullet implements Movable {
 
     }
 
+    public boolean isExist() {
+        return exist;
+    }
+
     public static class BulletList {
 
         private static final List<Bullet> list = new LinkedList<>();
@@ -87,6 +94,10 @@ public class Bullet implements Movable {
 
         public static List<Bullet> getList() {
             return list;
+        }
+        
+        public static void remove() {
+            //TODO remove bullet
         }
     }
 }

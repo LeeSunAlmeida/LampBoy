@@ -24,6 +24,7 @@ public abstract class Enemy implements CanShoot, Hittable, Movable{
     protected int shootSpeed;
     public static Player player; //each enemy must know the player to move according to what the player does
     private static final String[] enemyOrders = {"enemyWalkToPlayer", "enemyShoot", "enemyWalkAwayFromPlayer"};
+    private int enemyMoveIterator = 0;
 
     public Enemy(int charStartPointX) {
         this.charStartPointX = charStartPointX;

@@ -1,5 +1,6 @@
 package org.academiadecodigo.rapunshells.Player;
 
+import org.academiadecodigo.rapunshells.Enemies.Enemy;
 import org.academiadecodigo.rapunshells.Game.Game;
 import org.academiadecodigo.rapunshells.Game.Order;
 import org.academiadecodigo.rapunshells.Guns.Bullet;
@@ -44,6 +45,7 @@ public class Player implements Hittable, Movable, KeyboardHandler {
         //playerVisual.grow(0,-40);
         //playerVisual.setColor(Color.MAGENTA);
         keyboardMove();
+        Enemy.player = this;
 
     }
 

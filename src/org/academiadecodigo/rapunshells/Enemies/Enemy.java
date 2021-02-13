@@ -4,6 +4,7 @@ import org.academiadecodigo.rapunshells.Guns.Bullet;
 import org.academiadecodigo.rapunshells.Guns.CanShoot;
 import org.academiadecodigo.rapunshells.Guns.Gun;
 import org.academiadecodigo.rapunshells.Guns.Hittable;
+import org.academiadecodigo.rapunshells.Player.Player;
 import org.academiadecodigo.rapunshells.Window;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Movable;
@@ -19,6 +20,7 @@ public abstract class Enemy implements CanShoot, Hittable, Movable{
     private final int charStartPointY = Window.getFLOORCOORD() - charHeight;
     private final int charStartPointX;
     protected int shootSpeed;
+    public static Player player; //each enemy must know the player to move accordling to what the player does
 
     public Enemy(int charStartPointX) {
         this.charStartPointX = charStartPointX;
@@ -44,12 +46,21 @@ public abstract class Enemy implements CanShoot, Hittable, Movable{
 
     @Override
     public void hit(Bullet bullet) {
-
+        System.out.println("Entered the hit method of the enemy");
+        if(isDead()) {
+            enemyVisual.delete();
+        }
         if (!isDead()) {
             health -= bullet.getDamage();
+            System.out.println(health);
         }
     }
 
+    /*public void play() {
+        int xOfPlayer = player.getPlayerVisual().getX();
+        int xOfEnemy = this.enemyVisual.getX();
+        if (xOfEnemy - xOfPlayer > )
+    }*/
 
 
     public int getCharHeight() {
@@ -72,4 +83,7 @@ public abstract class Enemy implements CanShoot, Hittable, Movable{
         return enemyVisual;
     }
 
+    public int getHealth() {
+        return health;
+    }
 }

@@ -18,7 +18,7 @@ public class Game {
     }
 
     public static void executeOrders(Player player) throws InterruptedException {
-        System.out.println("executeOrders");
+        //System.out.println("executeOrders");
         while (!orderList.isEmpty()) {
             System.out.println("order picked");
             Order order = (Order) orderList.get(0);

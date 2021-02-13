@@ -45,13 +45,17 @@ public class Bullet implements Movable {
     public void bulletCollisionDetector(Enemy enemy) {
         if (bulletVisual.getX() >= enemy.getEnemyVisual().getX() && bulletVisual.getX() <= enemy.getEnemyVisual().getX() + enemy.getCharWidth()
                 && bulletVisual.getY() >= enemy.getEnemyVisual().getY() && (bulletVisual.getY() <= enemy.getEnemyVisual().getY() + enemy.getCharHeight())) {
+            System.out.println("bullet touched enemy");
+            bulletVisual.delete();  //quando a bala atinge o inimigo ela não continua a andar
             enemy.hit(this);
+            System.out.println(enemy.getHealth());
         }
     }
 
     public void bulletCollisionDetector1(Player player) {
         if ((bulletVisual.getX() >= player.getPlayerVisual().getX()) && (bulletVisual.getX() <= player.getPlayerVisual().getX() + player.getCharWidth())
                 && (bulletVisual.getY() >= player.getPlayerVisual().getY()) && (bulletVisual.getY() <= player.getPlayerVisual().getY() + player.getCharHeight())) {
+            bulletVisual.delete();  //quando a bala atinge o player ela não continua a andar
             player.hit(this);
         }
     }

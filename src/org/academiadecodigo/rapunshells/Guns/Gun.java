@@ -5,13 +5,15 @@ import org.academiadecodigo.rapunshells.Enemies.Enemy;
 import org.academiadecodigo.rapunshells.Player.Player;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Gun {
     private int bulletDamage;
     private int shootSpeed;
     private Player player;
     private Enemy enemy;
-    public Rectangle gunVisual;
+    private Rectangle gunVisual;
+    public Picture playerGunVisual;
     public int gunSize = 10;
     public int gunHeightStart = 2 * Window.getCelSizeY();
     public int gunHeightDelta = 3 * Window.getCelSizeY();
@@ -34,10 +36,10 @@ public class Gun {
     }
 
     public void gunVisualDrawPlayer() {
-        this.gunVisual = new Rectangle((double)(this.player.getCharStartPointX() + this.player.getCharWidth()), (double)(this.player.getCharStartPointY() + this.gunHeightStart), (double)this.gunSize, (double)this.gunSize);
-        this.gunVisual.draw();
-        this.gunVisual.fill();
-        this.gunVisual.setColor(Color.BLUE);
+        this.playerGunVisual = new Picture((double)(this.player.getCharStartPointX() + this.player.getCharWidth()), (double)(this.player.getCharStartPointY() + this.gunHeightStart), "gun-choped.png");
+        this.playerGunVisual.draw();
+       // this.playerGunVisual.fill();
+        //this.playerGunVisual.setColor(Color.BLUE);
     }
 
     public void gunVisualDrawEnemy() {

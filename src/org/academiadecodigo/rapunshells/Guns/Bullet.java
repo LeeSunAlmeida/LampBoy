@@ -26,7 +26,7 @@ public class Bullet implements Movable {
         this.gun = gun;
         this.damage = damage;
         bulletList.add(this);
-        bulletVisual = new Picture(gun.gunVisual.getX(), gun.gunVisual.getY(), "bullet-pos.png");
+        bulletVisual = new Picture(gun.playerGunVisual.getX(), gun.playerGunVisual.getY(), "bullet-pos.png");
         bulletVisual.draw();
         Game.orderList.add(new Order(bulletOrders[0], this));
 

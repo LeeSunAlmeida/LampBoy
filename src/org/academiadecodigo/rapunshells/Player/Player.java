@@ -36,6 +36,7 @@ public class Player implements Hittable, Movable, KeyboardHandler {
     private int jumpHeight = 6;
 
 
+
     public Player() {
         health = 100;
         gun = new Gun(10, 0, this);
@@ -192,7 +193,7 @@ public class Player implements Hittable, Movable, KeyboardHandler {
 
     public void moveLeft() {
         playerVisual.translate(-Window.getCelSizeX(), 0);
-        gun.gunVisual.translate(-Window.getCelSizeX(), 0);
+        gun.playerGunVisual.translate(-Window.getCelSizeX(), 0);
         if (facedRight) {
             gun.gunVisualUpdate(stand, true);
         }
@@ -201,7 +202,7 @@ public class Player implements Hittable, Movable, KeyboardHandler {
 
     public void moveRight() {
         playerVisual.translate(Window.getCelSizeX(), 0);
-        gun.gunVisual.translate(Window.getCelSizeX(), 0);
+        gun.playerGunVisual.translate(Window.getCelSizeX(), 0);
         if (!facedRight) {
             gun.gunVisualUpdate(stand, false);
         }

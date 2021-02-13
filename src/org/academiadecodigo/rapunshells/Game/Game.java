@@ -59,6 +59,9 @@ public class Game {
         for(int i = 0; i < bulletList.size(); i++) {
             Bullet bullet = (Bullet) bulletList.get(i);
             bullet.bulletMove();
+            if(!bullet.isExist()){
+                bulletList.remove(i);
+            }
         }
 
 

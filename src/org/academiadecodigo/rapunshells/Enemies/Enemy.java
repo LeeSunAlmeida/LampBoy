@@ -32,7 +32,7 @@ public abstract class Enemy implements CanShoot, Hittable, Movable{
         enemyVisual.draw();
        // enemyVisual.grow();
        // enemyVisual.fill();
-        //enemyVisual.setColor(Color.BLACK);
+       // enemyVisual.setColor(Color.BLACK);
     }
 
     public static Player getPlayer() {

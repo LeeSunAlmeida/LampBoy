@@ -95,9 +95,6 @@ public class Bullet implements Movable {
         public static List<Bullet> getList() {
             return list;
         }
-        
-        public static void remove() {
-            //TODO remove bullet
-        }
+
     }
 }

@@ -1,5 +1,6 @@
 package org.academiadecodigo.rapunshells.Game;
 
+import org.academiadecodigo.rapunshells.Enemies.Enemy;
 import org.academiadecodigo.rapunshells.Guns.Bullet;
 import org.academiadecodigo.rapunshells.Player.Player;
 
@@ -11,6 +12,7 @@ public class Game {
     public static List orderList = ordersList.getList();
     public static List bulletList = Bullet.BulletList.getList();
     public static final String[] playerOrders = Player.getPlayerOrders();
+    public static final String[] enemyOrders = Enemy.getEnemyOrders();
     
 
     public static void gameOver() {
@@ -18,7 +20,6 @@ public class Game {
     }
 
     public static void executeOrders(Player player) throws InterruptedException {
-        System.out.println("executeOrders");
         while (!orderList.isEmpty()) {
             System.out.println("order picked");
             Order order = (Order) orderList.get(0);

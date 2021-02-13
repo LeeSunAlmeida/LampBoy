@@ -21,6 +21,7 @@ public class Bullet implements Movable {
     private Picture bulletVisual;
     private static final String[] bulletOrders = {"bulletMove"};
     private static BulletList bulletList = new BulletList();
+    private boolean exist = true;
 
     public Bullet(int damage, Gun gun) {
         this.gun = gun;
@@ -45,14 +46,24 @@ public class Bullet implements Movable {
     public void bulletCollisionDetector(Enemy enemy) {
         if (bulletVisual.getX() >= enemy.getEnemyVisual().getX() && bulletVisual.getX() <= enemy.getEnemyVisual().getX() + enemy.getCharWidth()
                 && bulletVisual.getY() >= enemy.getEnemyVisual().getY() && (bulletVisual.getY() <= enemy.getEnemyVisual().getY() + enemy.getCharHeight())) {
+            System.out.println("bullet touched enemy");
+            //bulletVisual.delete();  //quando a bala atinge o inimigo ela não continua a andar
+            exist = false;
             enemy.hit(this);
+            System.out.println(enemy.getHealth());
+        } else if(bulletVisual.getX() /* + bulletSize */ >= Window.getWidth()){
+            //bulletVisual.delete(); //TODO transform delete em erase
+            exist = false;
         }
     }
 
     public void bulletCollisionDetector1(Player player) {
         if ((bulletVisual.getX() >= player.getPlayerVisual().getX()) && (bulletVisual.getX() <= player.getPlayerVisual().getX() + player.getCharWidth())
                 && (bulletVisual.getY() >= player.getPlayerVisual().getY()) && (bulletVisual.getY() <= player.getPlayerVisual().getY() + player.getCharHeight())) {
+            bulletVisual.delete();  //quando a bala atinge o player ela não continua a andar
             player.hit(this);
+        } else if(bulletVisual.getX() <= Window.getPADDING()) {
+            bulletVisual.delete(); //TODO transform delete em erase
         }
     }
 
@@ -63,6 +74,10 @@ public class Bullet implements Movable {
     @Override
     public void translate(double v, double v1) {
 
+    }
+
+    public boolean isExist() {
+        return exist;
     }
 
     public static class BulletList {
@@ -79,6 +94,10 @@ public class Bullet implements Movable {
 
         public static List<Bullet> getList() {
             return list;
+        }
+        
+        public static void remove() {
+            //TODO remove bullet
         }
     }
 }

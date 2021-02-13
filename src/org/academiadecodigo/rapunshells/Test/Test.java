@@ -21,7 +21,6 @@ public class Test {
         new Background().EnemyLifeBarr();
 
         //new Screen2().BackGround2();
-        Player player = new Player();
 
 
         Foreground.drawFloor();

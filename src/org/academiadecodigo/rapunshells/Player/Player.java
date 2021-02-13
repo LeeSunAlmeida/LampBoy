@@ -43,8 +43,6 @@ public class Player implements Hittable, Movable, KeyboardHandler {
         gun = new Gun(10, 0, this);
         playerVisual = new Picture(charStartPointX, charStartPointY, "lamp-boy.png");
         playerVisual.draw();
-        //playerVisual.grow(0,-40);
-        //playerVisual.setColor(Color.MAGENTA);
         keyboardMove();
         Enemy.player = this;
 
@@ -245,7 +243,6 @@ public class Player implements Hittable, Movable, KeyboardHandler {
     public void jumpEvent() {
 
         if (jumping) {
-            //TODO iteration #1 & 2nd to last must do nothing
             if (currentIteration == jumpHeight * 2) {
                 currentIteration = 0;
                 jumping = false;
@@ -261,8 +258,6 @@ public class Player implements Hittable, Movable, KeyboardHandler {
 
     public void jumpStart() {
         jumping = true;
-        //playerVisual.translate(0, -Window.getCelSizeY());
-        //currentIteration++;
     }
 
     public void checkIfPlayerWasHit() {

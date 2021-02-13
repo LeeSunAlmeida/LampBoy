@@ -22,6 +22,7 @@ public class Bullet implements Movable {
     private static final String[] bulletOrders = {"bulletMove"};
     private static BulletList bulletList = new BulletList();
     private boolean exist = true;
+    private int bulletImageWidth = 70;
 
     public Bullet(int damage, Gun gun) {
         this.gun = gun;
@@ -30,7 +31,6 @@ public class Bullet implements Movable {
         bulletVisual = new Picture(gun.getGunVisual().getX(), gun.getGunVisual().getY(), "bullet-pos.png");
         bulletVisual.draw();
         Game.orderList.add(new Order(bulletOrders[0], this));
-
     }
 
     public void bulletMove() {
@@ -47,11 +47,11 @@ public class Bullet implements Movable {
         if (bulletVisual.getX() >= enemy.getEnemyVisual().getX() && bulletVisual.getX() <= enemy.getEnemyVisual().getX() + enemy.getCharWidth()
                 && bulletVisual.getY() >= enemy.getEnemyVisual().getY() && (bulletVisual.getY() <= enemy.getEnemyVisual().getY() + enemy.getCharHeight())) {
             System.out.println("bullet touched enemy");
-            exist = false;
             enemy.hit(this);
-            System.out.println(enemy.getHealth());
-        } else if(bulletVisual.getX() /* + bulletSize */ >= Window.getWidth()){
-            //bulletVisual.delete(); //TODO transform delete em erase
+            bulletVisual.delete();
+            exist = false;
+        } else if(bulletVisual.getX() + bulletImageWidth >= Window.getWidth()){
+            bulletVisual.delete(); //TODO transform delete em erase
             exist = false;
         }
     }
@@ -61,8 +61,10 @@ public class Bullet implements Movable {
                 && (bulletVisual.getY() >= player.getPlayerVisual().getY()) && (bulletVisual.getY() <= player.getPlayerVisual().getY() + player.getCharHeight())) {
             bulletVisual.delete();  //quando a bala atinge o player ela não continua a andar
             player.hit(this);
+            exist = false;
         } else if(bulletVisual.getX() <= Window.getPADDING()) {
             bulletVisual.delete(); //TODO transform delete em erase
+            exist = false;
         }
     }
 

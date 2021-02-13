@@ -2,13 +2,14 @@ package org.academiadecodigo.rapunshells.Enemies;
 
 import org.academiadecodigo.rapunshells.Guns.Bullet;
 import org.academiadecodigo.rapunshells.Guns.Gun;
+import org.academiadecodigo.rapunshells.Player.Player;
 
 public class ArmoredSoldier extends Enemy{
     private final int bulletDamage = 30;
     private final int shootSpeed = 4;
 
-    public ArmoredSoldier(int charStarPointX) {
-        super(charStarPointX);
+    public ArmoredSoldier(int charStartPointX, Player player) {
+        super(charStartPointX, player);
         super.health = 150;
         gun = new Gun(bulletDamage, shootSpeed, this);
     }

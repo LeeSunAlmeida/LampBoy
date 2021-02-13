@@ -13,30 +13,28 @@ import org.academiadecodigo.simplegraphics.graphics.Movable;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public abstract class Enemy implements CanShoot, Hittable, Movable{
     protected int health;
     protected Gun gun;
     protected Picture enemyVisual;
-    private final int charHeight = Window.getCelSizeY() * 6;
-    private final int charWidth = Window.getCelSizeX() * 8;
-    private final int charStartPointY = Window.getFLOORCOORD() - charHeight;
+    private final int charHeight = Window.getCharHeight();
+    private final int charWidth = Window.getCharWidth();
+    private final int charStartPointY = Window.getFLOORCOORD() - Window.getCelSizeY() *6;
     private final int charStartPointX;
     protected int shootSpeed;
-    public static Player player; //each enemy must know the player to move according to what the player does
-    private static final String[] enemyOrders = {"enemyWalkToPlayer", "enemyShoot", "enemyWalkAwayFromPlayer"};
+    private static final String[] enemyOrders = {"enemyWalkToPlayer", "enemyWalkAwayFromPlayer", "enemyShoot", "addEnemyToOrders", "feedLoop"};
     private int enemyMoveIterator = 0;
+    private Player player;
 
-    public Enemy(int charStartPointX) {
+    public Enemy(int charStartPointX, Player player) {
+        this.player = player;
         this.charStartPointX = charStartPointX;
         enemyVisual = new Picture(charStartPointX, charStartPointY, "scyco-alien.png");
         enemyVisual.draw();
-       // enemyVisual.grow();
-       // enemyVisual.fill();
-       // enemyVisual.setColor(Color.BLACK);
-    }
-
-    public static Player getPlayer() {
-        return player;
+        Game.orderList.add(new Order(enemyOrders[3], this));
     }
 
     @Override
@@ -70,24 +68,32 @@ public abstract class Enemy implements CanShoot, Hittable, Movable{
     public void play() {
         int xOfPlayer = player.getPlayerVisual().getX();
         int xOfEnemy = this.enemyVisual.getX();
-        if (xOfEnemy - xOfPlayer > 600) {
-            for (int i=0; i<5; i++) {
-                Game.orderList.add(new Order(enemyOrders[0], this));
-                //this.enemyVisual.translate(-1,0);
+        System.out.println("enemy move");
+        if(enemyMoveIterator % 2 == 0) {
+            if (enemyVisual.getX() > xOfPlayer + Window.getCelSizeX() * 100) {
+                Game.orderList.add(new Order(enemyOrders[0], this)); //walk to player
+            } else if (enemyVisual.getX() < xOfPlayer + Window.getCelSizeX() * 60) {
+                Game.orderList.add(new Order(enemyOrders[1], this)); //from
             }
-            Game.orderList.add(new Order(enemyOrders[1], this));
-            //this.shoot();
         }
-        else {
-            for (int i=0; i<5; i++) {
+        if (enemyMoveIterator > 12) {
+            double random = Math.random() * 20;
+            if(random > 18) {
                 Game.orderList.add(new Order(enemyOrders[2], this));
-                //this.enemyVisual.translate(1,0);
+                enemyMoveIterator = 0;
             }
-            Game.orderList.add(new Order(enemyOrders[1], this));
-            //this.shoot();
         }
+        enemyMoveIterator++;
+
     }
 
+    public void moveToPlayer() {
+        enemyVisual.translate(-Window.getCelSizeX(), 0);
+    }
+
+    public void moveFromPlayer() {
+        enemyVisual.translate(Window.getCelSizeX(), 0);
+    }
 
     public int getCharHeight() {
         return charHeight;
@@ -115,5 +121,23 @@ public abstract class Enemy implements CanShoot, Hittable, Movable{
 
     public static String[] getEnemyOrders() {
         return enemyOrders;
+    }
+
+    public static class EnemyList {
+
+        private static final List<Enemy> list = new LinkedList<>();
+
+        public void add(Enemy enemy) {
+            list.add(enemy);
+        }
+
+        public boolean isEmpty() {
+            return list.isEmpty();
+        }
+
+        public static List<Enemy> getList() {
+            return list;
+        }
+
     }
 }

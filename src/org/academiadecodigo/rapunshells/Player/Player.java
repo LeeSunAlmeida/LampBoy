@@ -44,7 +44,6 @@ public class Player implements Hittable, Movable, KeyboardHandler {
         playerVisual = new Picture(charStartPointX, charStartPointY, "lamp-boy.png");
         playerVisual.draw();
         keyboardMove();
-        Enemy.player = this;
 
     }
 

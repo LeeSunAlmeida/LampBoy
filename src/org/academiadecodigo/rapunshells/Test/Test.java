@@ -16,9 +16,8 @@ public class Test {
 
         new Grid();
 
-        new Background().Intro();
+        new Background().BackGround3();
         new Background().PlayerLifeBarr();
-        new Background().EnemyLifeBarr();
 
         //new Screen2().BackGround2();
 

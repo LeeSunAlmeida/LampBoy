@@ -19,11 +19,9 @@ public class Background {
 
         intro = new Picture(Window.getPADDING(), Window.getPADDING(), "background-room.jpg");
 
-
         intro.draw();
         intro.grow(20, 5);
         intro.translate(20, 5);
-
         return intro;
 
     }
@@ -56,7 +54,7 @@ public class Background {
 
     public Picture BackGround3() {
 
-        backGround3 = new Picture(Window.getPADDING(), Window.getPADDING(), "background-milicia.jpg");
+        backGround3 = new Picture(Window.getPADDING(), Window.getPADDING(), "bcg.png");
         backGround3.draw();
         backGround3.grow(47, 10);
         backGround3.translate(Window.getPADDING() + 37, Window.getPADDING());
@@ -78,7 +76,7 @@ public class Background {
     }
 
 
-    public Rectangle EnemyLifeBarr() {
+    /*public Rectangle EnemyLifeBarr() {
 
 
         Rectangle enemyLifeBarr = new Rectangle(134, 60, 1200, 540);
@@ -89,6 +87,8 @@ public class Background {
 
         return enemyLifeBarr;
     }
+
+     */
 
 }
 

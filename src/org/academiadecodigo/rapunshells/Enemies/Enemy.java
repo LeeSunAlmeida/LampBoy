@@ -1,5 +1,7 @@
 package org.academiadecodigo.rapunshells.Enemies;
 
+import org.academiadecodigo.rapunshells.Game.Game;
+import org.academiadecodigo.rapunshells.Game.Order;
 import org.academiadecodigo.rapunshells.Guns.Bullet;
 import org.academiadecodigo.rapunshells.Guns.CanShoot;
 import org.academiadecodigo.rapunshells.Guns.Gun;
@@ -21,6 +23,7 @@ public abstract class Enemy implements CanShoot, Hittable, Movable{
     private final int charStartPointX;
     protected int shootSpeed;
     public static Player player; //each enemy must know the player to move according to what the player does
+    private static final String[] enemyOrders = {"enemyWalkToPlayer", "enemyShoot", "enemyWalkAwayFromPlayer"};
 
     public Enemy(int charStartPointX) {
         this.charStartPointX = charStartPointX;
@@ -63,11 +66,26 @@ public abstract class Enemy implements CanShoot, Hittable, Movable{
         }
     }
 
-    /*public void play() {
+    public void play() {
         int xOfPlayer = player.getPlayerVisual().getX();
         int xOfEnemy = this.enemyVisual.getX();
-        if (xOfEnemy - xOfPlayer > )
-    }*/
+        if (xOfEnemy - xOfPlayer > 600) {
+            for (int i=0; i<5; i++) {
+                Game.orderList.add(new Order(enemyOrders[0], this));
+                //this.enemyVisual.translate(-1,0);
+            }
+            Game.orderList.add(new Order(enemyOrders[1], this));
+            //this.shoot();
+        }
+        else {
+            for (int i=0; i<5; i++) {
+                Game.orderList.add(new Order(enemyOrders[2], this));
+                //this.enemyVisual.translate(1,0);
+            }
+            Game.orderList.add(new Order(enemyOrders[1], this));
+            //this.shoot();
+        }
+    }
 
 
     public int getCharHeight() {
@@ -92,5 +110,9 @@ public abstract class Enemy implements CanShoot, Hittable, Movable{
 
     public int getHealth() {
         return health;
+    }
+
+    public static String[] getEnemyOrders() {
+        return enemyOrders;
     }
 }

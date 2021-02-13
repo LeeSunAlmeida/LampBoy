@@ -13,8 +13,8 @@ public class Gun {
     private Enemy enemy;
     public Rectangle gunVisual;
     public int gunSize = 10;
-    public int gunHeightStart = 2 * Window.getCelSizeY();
-    public int gunHeightDelta = 3 * Window.getCelSizeY();
+    public int gunHeightStart = 5 * Window.getCelSizeY();
+    public int gunHeightDelta = 2 * Window.getCelSizeY();
     public int gunWidthDelta;
 
     public Gun(int bulletDmg, int shootSpeed, Player player) {
@@ -42,9 +42,9 @@ public class Gun {
 
     public void gunVisualDrawEnemy() {
         this.gunVisual = new Rectangle((double)this.enemy.getCharStartPointX(), (double)(this.enemy.getCharStartPointY() + this.gunHeightStart), (double)this.gunSize, (double)this.gunSize);
-        this.gunVisual.draw();
-        this.gunVisual.fill();
-        this.gunVisual.setColor(Color.BLUE);
+        //this.gunVisual.draw();
+        //this.gunVisual.fill();
+        //this.gunVisual.setColor(Color.BLUE);
     }
 
     public void gunVisualUpdate(boolean lastFrameStand, boolean lastFrameFacedRight) {
@@ -56,7 +56,6 @@ public class Gun {
         } else if (lastFrameFacedRight != this.player.isFacedRight()) {
             this.gunVisualLeftRight();
         }
-
     }
 
     public void gunVisualDuckUnduck() {

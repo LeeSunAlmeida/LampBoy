@@ -133,9 +133,7 @@ public class Game {
         for (int i = 0; i < enemiesAlive.size(); i++) {
             Enemy enemy = (Enemy) enemiesAlive.get(i);
             enemy.play();
-            if (enemy.isDead()) {
-                enemiesAlive.remove(i);
-            }
+
         }
 
         if (player.isDead()) {

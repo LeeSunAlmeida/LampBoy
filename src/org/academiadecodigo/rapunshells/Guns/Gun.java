@@ -94,6 +94,11 @@ public class Gun {
         return this.player;
     }
 
+
+    public Enemy getEnemy() {
+        return enemy;
+    }
+
     public Rectangle getGunVisual() {
         return gunVisual;
     }

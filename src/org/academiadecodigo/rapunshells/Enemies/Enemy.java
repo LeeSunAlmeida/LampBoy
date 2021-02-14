@@ -2,6 +2,7 @@ package org.academiadecodigo.rapunshells.Enemies;
 
 import org.academiadecodigo.rapunshells.Game.Game;
 import org.academiadecodigo.rapunshells.Game.Order;
+import org.academiadecodigo.rapunshells.Game.Screen1;
 import org.academiadecodigo.rapunshells.Guns.Bullet;
 import org.academiadecodigo.rapunshells.Guns.CanShoot;
 import org.academiadecodigo.rapunshells.Guns.Gun;
@@ -42,7 +43,9 @@ public abstract class Enemy implements CanShoot, Hittable, Movable{
 
     @Override
     public void shoot() {
-        gun.shootBullet(gun.getBulletDamage());
+        if(!isDead()) {
+            gun.shootBullet(gun.getBulletDamage());
+        }
     }
 
     public boolean isDead() {
@@ -55,9 +58,10 @@ public abstract class Enemy implements CanShoot, Hittable, Movable{
 
     @Override
     public void hit(Bullet bullet) {
-        System.out.println("Entered the hit method of the enemy");
+        System.out.println(isDead());
         if(isDead()) {
             enemyVisual.delete();
+             Screen1.Final();
         }
         if (!isDead()) {
             health -= bullet.getDamage();
@@ -124,6 +128,8 @@ public abstract class Enemy implements CanShoot, Hittable, Movable{
         return enemyOrders;
     }
 
+
+
     public static class EnemyList {
 
         private static final List<Enemy> list = new LinkedList<>();
@@ -140,5 +146,9 @@ public abstract class Enemy implements CanShoot, Hittable, Movable{
             return list;
         }
 
+
+
     }
+
+
 }

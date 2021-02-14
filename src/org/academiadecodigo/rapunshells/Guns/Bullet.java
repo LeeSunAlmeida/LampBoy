@@ -28,10 +28,30 @@ public class Bullet implements Movable {
         this.gun = gun;
         this.damage = damage;
         bulletList.add(this);
-        bulletVisual = new Picture(gun.getGunVisual().getX(), gun.getGunVisual().getY(), "bullet-pos.png");
+
+       if(gun.getPlayer() != null) {
+           int random =  (int) Math.ceil(Math.random() * 4);
+           switch (random){
+               case 1 :
+                   bulletVisual = new Picture(gun.getGunVisual().getX(), gun.getGunVisual().getY(), "bullet-pos2.png");
+               case 2 :
+                   bulletVisual = new Picture(gun.getGunVisual().getX(), gun.getGunVisual().getY(), "bullet3-pos.png");
+               case 3 :
+                   bulletVisual = new Picture(gun.getGunVisual().getX(), gun.getGunVisual().getY(), "bullet4-pos.png");
+               case 4 :
+                   bulletVisual = new Picture(gun.getGunVisual().getX(), gun.getGunVisual().getY(), "bullet-pos.png");
+           }
+
+
+       }else if(gun.getEnemy() != null){
+           bulletVisual = new Picture(gun.getGunVisual().getX(), gun.getGunVisual().getY(), "enemies-bullet.png");
+       }
+
         bulletVisual.draw();
         Game.orderList.add(new Order(bulletOrders[0], this));
+
     }
+
 
     public void bulletMove() {
         if(this.gun.getPlayer() != null) {

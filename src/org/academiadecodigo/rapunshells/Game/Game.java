@@ -4,6 +4,8 @@ import org.academiadecodigo.rapunshells.Enemies.Enemy;
 import org.academiadecodigo.rapunshells.Guns.Bullet;
 import org.academiadecodigo.rapunshells.Player.Player;
 import org.academiadecodigo.rapunshells.Window;
+import org.academiadecodigo.simplegraphics.graphics.Color;
+import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 
@@ -17,8 +19,11 @@ public class Game {
     public static final String[] playerOrders = Player.getPlayerOrders();
     public static final String[] enemyOrders = Enemy.getEnemyOrders();
     private static Enemy enemy = null;
+    private static Player player = null;
     private static int gameScreenIterator = 0;
-    
+    private static final Rectangle playerLifeRed = new Rectangle(134, 60, 300, 40);
+    private static Rectangle playerLifeGreen = new Rectangle(134, 60, 300, 40);
+
 
     public static void gameOver() {
         try {
@@ -48,16 +53,28 @@ public class Game {
             gameOver = new Picture(Window.getPADDING(), Window.getPADDING(), "GameOver0.png");
             gameOver.draw();
             Thread.sleep(50);
-
         } catch (InterruptedException e) {
             System.out.println("Game over bust");
         }
+    }
+
+    public static void createPlayerLifeBar(Player player) {
+
+        playerLifeRed.draw();
+        playerLifeRed.fill();
+        playerLifeRed.setColor(Color.RED);
+        playerLifeGreen.draw();
+        playerLifeGreen.fill();
+        playerLifeGreen.setColor(Color.GREEN);
 
     }
 
-    public static void executeOrders(Player player) throws InterruptedException {
+    public static Rectangle getPlayerLifeGreen() {
+        return playerLifeGreen;
+    }
+
+    public static void executeOrders(Player player) {
         while (!orderList.isEmpty()) {
-            System.out.println("order picked");
             Order order = (Order) orderList.get(0);
             orderList.remove(0);
             String orderStr = order.getOrderGiven();
@@ -122,33 +139,46 @@ public class Game {
             }
         }
 
-        System.out.println(player.isDead());
         if (player.isDead()) {
             Game.gameOver();
-            System.out.println("DIED");
         } else if (enemiesAlive.isEmpty()) {
             changeScreen();
         } else {
-            Thread.sleep(50);
+            try{
+                Thread.sleep(70);
+            } catch (InterruptedException e) {
+                System.out.println("Thread sleep broke");
+            }
             executeOrders(player);
         }
     }
 
-        public static void changeScreen() {
-            if (gameScreenIterator == 0) {
-                //start screen1
-                gameScreenIterator++;
-            } else if (gameScreenIterator == 1){
-                //start screen2
-                gameScreenIterator++;
-            } else if (gameScreenIterator == 2) {
-                //start screen3
-                gameScreenIterator++;
-            } else if (gameScreenIterator == 3) {
-                //start screen4
-                gameScreenIterator++;
-            } else {
-                gameOver();
-            }
+    public static void changeScreen() {
+        if (gameScreenIterator == 0) {
+            changeScreen();
+            gameScreenIterator++;
+        } else if (gameScreenIterator == 1){
+            player = new Player();
+            new Screen1(player);
+            createPlayerLifeBar(player);
+            gameScreenIterator++;
+        } else if (gameScreenIterator == 2) {
+            //start screen3
+            gameScreenIterator++;
+        } else if (gameScreenIterator == 3) {
+            //start screen4
+            gameScreenIterator++;
+        } else {
+            gameOver();
         }
+    }
+
+    public static Player getPlayer() {
+        return player;
+    }
+
+    public static void gameStart() {
+        player = new Player();
+        new Screen1(player);
+    }
 }

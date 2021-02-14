@@ -9,8 +9,8 @@ public class Soldier extends Enemy {
     private int bulletDamage = 10;
     private int shootSpeed = 3;
 
-    public Soldier(int charStartPointX, Player player) {
-        super(charStartPointX, player);
+    public Soldier(int charStartPointX) {
+        super(charStartPointX);
         super.health = 100;
         gun = new Gun(bulletDamage, shootSpeed, this);
     }

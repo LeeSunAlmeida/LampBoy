@@ -8,8 +8,8 @@ public class Milicia extends Enemy{
     private int bulletDamage = 20;
     private int shootSpeed = 1;
 
-    public Milicia(int charStartPointX, Player player) {
-        super(charStartPointX, player);
+    public Milicia(int charStartPointX) {
+        super(charStartPointX);
         super.health = 80;
         gun = new Gun(bulletDamage, shootSpeed, this);
     }

@@ -40,15 +40,18 @@ public class Player implements Hittable, Movable, KeyboardHandler {
 
     public Player() {
         health = 100;
-        gun = new Gun(10, 0, this);
-        playerVisual = new Picture(charStartPointX, charStartPointY, "lamp-boy.png");
-        playerVisual.draw();
         keyboardMove();
 
     }
 
     public void translate(double v, double v1) {
 
+    }
+
+    public void drawPlayer() {
+        gun = new Gun(10, 0, this);
+        playerVisual = new Picture(charStartPointX, charStartPointY, "lamp-boy.png");
+        playerVisual.draw();
     }
 
     //Keyboard Methods
@@ -104,7 +107,6 @@ public class Player implements Hittable, Movable, KeyboardHandler {
                 break;
             case KeyboardEvent.KEY_SPACE:
                 Game.orderList.add(new Order(playerOrders[5], this));
-                System.out.println("space input");
                 break;
             case KeyboardEvent.KEY_UP:
                 Game.orderList.add(new Order(playerOrders[0], this));
@@ -223,7 +225,6 @@ public class Player implements Hittable, Movable, KeyboardHandler {
     public void duck() {
         if (stand) {
             stand = false;
-            System.out.println("I'm ducked");
             double duckHeight = (Window.getCelSizeY() * 1.5);
             playerVisual.grow(0, -duckHeight);
             playerVisual.translate(0, duckHeight);
@@ -234,7 +235,6 @@ public class Player implements Hittable, Movable, KeyboardHandler {
     public void unDuck() {
         if (!stand) {
             stand = true;
-            System.out.println("I'm standing");
             double duckHeight = (Window.getCelSizeY() * 1.5);
             playerVisual.grow(0, duckHeight);
             playerVisual.translate(0, -duckHeight);

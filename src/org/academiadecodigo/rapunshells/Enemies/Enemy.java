@@ -27,14 +27,17 @@ public abstract class Enemy implements CanShoot, Hittable, Movable{
     protected int shootSpeed;
     private static final String[] enemyOrders = {"enemyWalkToPlayer", "enemyWalkAwayFromPlayer", "enemyShoot", "addEnemyToOrders", "feedLoop"};
     private int enemyMoveIterator = 0;
-    private Player player;
+    private Player player = Game.getPlayer();
 
-    public Enemy(int charStartPointX, Player player) {
-        this.player = player;
+    public Enemy(int charStartPointX) {
         this.charStartPointX = charStartPointX;
+        Game.orderList.add(new Order(enemyOrders[3], this));
+        System.out.println("created");
+    }
+
+    public void drawEnemy() {
         enemyVisual = new Picture(charStartPointX, charStartPointY, "scyco-alien.png");
         enemyVisual.draw();
-        Game.orderList.add(new Order(enemyOrders[3], this));
     }
 
     @Override

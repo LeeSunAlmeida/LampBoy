@@ -8,8 +8,8 @@ public class ArmoredSoldier extends Enemy{
     private final int bulletDamage = 30;
     private final int shootSpeed = 4;
 
-    public ArmoredSoldier(int charStartPointX, Player player) {
-        super(charStartPointX, player);
+    public ArmoredSoldier(int charStartPointX) {
+        super(charStartPointX);
         super.health = 150;
         gun = new Gun(bulletDamage, shootSpeed, this);
     }

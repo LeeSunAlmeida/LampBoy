@@ -10,7 +10,6 @@ public class Order {
     public Order(String orderGiven, Object creator) {
         this.orderGiven = orderGiven;
         this.creator = creator;
-        System.out.println("order created");
     }
 
     public String getOrderGiven() {

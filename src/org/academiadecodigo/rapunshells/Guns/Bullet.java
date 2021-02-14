@@ -39,7 +39,7 @@ public class Bullet implements Movable {
             bulletCollisionDetector(Screen1.getSoldier());
         } else {
             bulletVisual.translate(- Window.getCelSizeX() * 2, 0);
-            bulletCollisionDetector1(Screen1.getPlayer());
+            bulletCollisionDetector1(Game.getPlayer());
         }
     }
 

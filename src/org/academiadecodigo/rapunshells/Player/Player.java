@@ -17,7 +17,6 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 
 public class Player implements Hittable, Movable, KeyboardHandler {
-
     private int health;
     private Gun gun;
 
@@ -35,8 +34,6 @@ public class Player implements Hittable, Movable, KeyboardHandler {
 
     private Picture playerVisual;
     private int jumpHeight = 6;
-
-
 
     public Player() {
         health = 100;
@@ -134,9 +131,8 @@ public class Player implements Hittable, Movable, KeyboardHandler {
         if (isDead()) {
             Game.gameOver();
         }
-        //Background.getPlayerLifeGreen().grow(-(damage * 0.5), 0);
-        //Background.getPlayerLifeGreen().translate(-(damage * 0.5), 0);
-        //TODO Implement
+        Game.getPlayerLifeGreen().grow(-(damage * 1.5), 0);
+        Game.getPlayerLifeGreen().translate(-(damage * 1.5), 0);
     }
 
 

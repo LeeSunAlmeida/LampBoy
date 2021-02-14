@@ -9,8 +9,8 @@ public class Window {
     private static final int CELLSIZEX = 8;
     private static final int CELLSIZEY = 25;
 
-    private static int height = ROWS * CELLSIZEY + PADDING;
-    private static int width = /*COLS * CELLSIZEX + PADDING*/ 1450;
+    private static int height = ROWS * CELLSIZEY;
+    private static int width = COLS * CELLSIZEX;
 
     private static final int FLOORCOORD = height - CELLSIZEY * 4;
 

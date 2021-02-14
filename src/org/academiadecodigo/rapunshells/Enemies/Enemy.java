@@ -36,7 +36,7 @@ public abstract class Enemy implements CanShoot, Hittable, Movable{
     }
 
     public void drawEnemy() {
-        enemyVisual = new Picture(charStartPointX, charStartPointY, "scyco-alien.png");
+        enemyVisual = new Picture(charStartPointX, charStartPointY, "alien-talefe.png");
         enemyVisual.draw();
     }
 

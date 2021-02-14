@@ -20,7 +20,6 @@ public class Game {
     public static final String[] enemyOrders = Enemy.getEnemyOrders();
     private static Enemy enemy = null;
     private static Player player = null;
-    private static int gameScreenIterator = 0;
     private static final Rectangle playerLifeRed = new Rectangle(134, 60, 300, 40);
     private static Rectangle playerLifeGreen = new Rectangle(134, 60, 300, 40);
 
@@ -140,9 +139,9 @@ public class Game {
         }
 
         if (player.isDead()) {
-            Game.gameOver();
+            gameOver();
         } else if (enemiesAlive.isEmpty()) {
-            changeScreen();
+            ending();
         } else {
             try{
                 Thread.sleep(70);
@@ -157,7 +156,16 @@ public class Game {
             player = new Player();
             new Screen1(player);
             createPlayerLifeBar(player);
-            gameScreenIterator++;
+
+    }
+
+    public static void ending() {
+        new Picture(Window.getPADDING(), Window.getPADDING(), "final.jpeg");
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public static Player getPlayer() {

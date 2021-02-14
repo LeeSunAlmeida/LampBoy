@@ -93,10 +93,14 @@ public class Player implements Hittable, Movable, KeyboardHandler {
 
         switch (keyboardEvent.getKey()) {
             case KeyboardEvent.KEY_LEFT:
-                moveLeft();
+                if(playerVisual.getX() > Window.getPADDING() * 2) {
+                    moveLeft();
+                }
                 break;
             case KeyboardEvent.KEY_RIGHT:
-                moveRight();
+                if(playerVisual.getMaxX() < Window.getWidth()) {
+                    moveRight();
+                }
                 break;
             case KeyboardEvent.KEY_SPACE:
                 Game.orderList.add(new Order(playerOrders[5], this));
@@ -123,11 +127,14 @@ public class Player implements Hittable, Movable, KeyboardHandler {
     //Hit Mechanic
     @Override
     public void hit(Bullet bullet) {
-        health -= bullet.getDamage();
+        int damage = bullet.getDamage();
+        health -= damage;
         if (isDead()) {
             Game.gameOver();
         }
-
+        //Background.getPlayerLifeGreen().grow(-(damage * 0.5), 0);
+        //Background.getPlayerLifeGreen().translate(-(damage * 0.5), 0);
+        //TODO Implement
     }
 
 
@@ -257,10 +264,6 @@ public class Player implements Hittable, Movable, KeyboardHandler {
 
     public void jumpStart() {
         jumping = true;
-    }
-
-    public void checkIfPlayerWasHit() {
-        //TODO tenho de ter uma referencia para todas as bullets que são criadas no decorrer do jogo. How??
     }
 
 }

@@ -59,7 +59,7 @@ public class Screen1 {
 
     public Picture backGround1() {
 
-        backGround1 = new Picture(Window.getPADDING(), Window.getPADDING(), "background-room.jpg");
+        backGround1 = new Picture(Window.getPADDING(), Window.getPADDING(), "background-mars.jpg");
 
         backGround1.draw();
 

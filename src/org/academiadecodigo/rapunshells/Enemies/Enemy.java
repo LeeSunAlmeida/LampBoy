@@ -54,26 +54,23 @@ public abstract class Enemy implements CanShoot, Hittable, Movable{
     public void hit(Bullet bullet) {
         System.out.println("Entered the hit method of the enemy");
         if(isDead()) {
-            //TODO fix enemy dead
             enemyVisual.delete();
-            //enemyVisual = null;
-            System.out.println("enemy dead");
         }
         if (!isDead()) {
             health -= bullet.getDamage();
-            System.out.println(health);
         }
     }
 
     public void play() {
         int xOfPlayer = player.getPlayerVisual().getX();
-        int xOfEnemy = this.enemyVisual.getX();
         System.out.println("enemy move");
         if(enemyMoveIterator % 2 == 0) {
-            if (enemyVisual.getX() > xOfPlayer + Window.getCelSizeX() * 100) {
-                Game.orderList.add(new Order(enemyOrders[0], this)); //walk to player
-            } else if (enemyVisual.getX() < xOfPlayer + Window.getCelSizeX() * 60) {
-                Game.orderList.add(new Order(enemyOrders[1], this)); //from
+            if(enemyVisual.getMaxX() < Window.getWidth()) {
+                if (enemyVisual.getX() > xOfPlayer + Window.getCelSizeX() * 100) {
+                    Game.orderList.add(new Order(enemyOrders[0], this)); //walk to player
+                } else if (enemyVisual.getX() < xOfPlayer + Window.getCelSizeX() * 60) {
+                    Game.orderList.add(new Order(enemyOrders[1], this)); //from
+                }
             }
         }
         if (enemyMoveIterator > 12) {
@@ -84,15 +81,16 @@ public abstract class Enemy implements CanShoot, Hittable, Movable{
             }
         }
         enemyMoveIterator++;
-
     }
 
     public void moveToPlayer() {
         enemyVisual.translate(-Window.getCelSizeX(), 0);
+        gun.getGunVisual().translate(-Window.getCelSizeX(), 0);
     }
 
     public void moveFromPlayer() {
         enemyVisual.translate(Window.getCelSizeX(), 0);
+        gun.getGunVisual().translate(Window.getCelSizeX(), 0);
     }
 
     public int getCharHeight() {

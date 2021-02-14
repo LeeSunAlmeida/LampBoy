@@ -154,23 +154,10 @@ public class Game {
     }
 
     public static void changeScreen() {
-        if (gameScreenIterator == 0) {
-            changeScreen();
-            gameScreenIterator++;
-        } else if (gameScreenIterator == 1){
             player = new Player();
             new Screen1(player);
             createPlayerLifeBar(player);
             gameScreenIterator++;
-        } else if (gameScreenIterator == 2) {
-            //start screen3
-            gameScreenIterator++;
-        } else if (gameScreenIterator == 3) {
-            //start screen4
-            gameScreenIterator++;
-        } else {
-            gameOver();
-        }
     }
 
     public static Player getPlayer() {

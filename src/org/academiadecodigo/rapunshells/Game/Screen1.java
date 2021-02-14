@@ -35,8 +35,6 @@ public class Screen1 {
         backGround1 = new Picture(Window.getPADDING(), Window.getPADDING(), "background-mars.jpg");
 
         backGround1.draw();
-        backGround1.grow(80, 0);
-        backGround1.translate(80, 0);
 
         return backGround1;
 

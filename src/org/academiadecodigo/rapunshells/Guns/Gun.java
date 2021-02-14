@@ -34,20 +34,14 @@ public class Gun {
         this.gunVisualDrawEnemy();
     }
 
-
-
     public void gunVisualDrawPlayer() {
-        this.gunVisual = new Rectangle((double)(this.player.getCharStartPointX() + this.player.getCharWidth()), (double)(this.player.getCharStartPointY() + this.gunHeightStart), (double)this.gunSize, (double)this.gunSize);
-        this.gunVisual.draw();
-        this.gunVisual.fill();
-        this.gunVisual.setColor(Color.BLUE);
+        this.gunVisual = new Rectangle((double)(this.player.getCharStartPointX() + this.player.getCharWidth()),
+                (double)(this.player.getCharStartPointY() + this.gunHeightStart), (double)this.gunSize, (double)this.gunSize);
     }
 
     public void gunVisualDrawEnemy() {
-        this.gunVisual = new Rectangle((double)this.enemy.getCharStartPointX(), (double)(this.enemy.getCharStartPointY() + this.gunHeightStart), (double)this.gunSize, (double)this.gunSize);
-        this.gunVisual.draw();
-        this.gunVisual.fill();
-        this.gunVisual.setColor(Color.BLUE);
+        this.gunVisual = new Rectangle((double)this.enemy.getCharStartPointX(),
+                (double)(this.enemy.getCharStartPointY() + this.gunHeightStart), (double)this.gunSize, (double)this.gunSize);
     }
 
     public void gunVisualUpdate(boolean lastFrameStand, boolean lastFrameFacedRight) {
@@ -67,7 +61,6 @@ public class Gun {
         } else if (this.player.isStand()) {
             this.gunVisual.translate(0.0D, (double)(-this.gunHeightDelta));
         }
-
     }
 
     public void gunVisualJump() {
@@ -78,7 +71,6 @@ public class Gun {
         } else if (currentIteration < jumpHeight * 2) {
             this.gunVisual.translate(0.0D, (double)Window.getCelSizeY());
         }
-
     }
 
     public void gunVisualLeftRight() {
@@ -87,7 +79,6 @@ public class Gun {
         } else if (!this.player.isFacedRight()) {
             this.gunVisual.translate((double)(-this.gunWidthDelta), 0.0D);
         }
-
     }
 
     public void shootBullet(int bulletDamage) {
